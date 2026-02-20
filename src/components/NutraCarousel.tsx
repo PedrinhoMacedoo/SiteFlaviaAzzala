@@ -9,7 +9,7 @@ const steps = [
         title: 'Ticket Médio Explosivo',
         text: 'Trabalhamos com pacotes (multi-frascos). Um único cliente gasta $200 a $500.',
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
             </svg>
         ),
@@ -19,7 +19,7 @@ const steps = [
         title: 'Funil de Upsell',
         text: 'Permite múltiplas vendas na mesma transação. Cada clique vale mais.',
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
             </svg>
         ),
@@ -29,7 +29,7 @@ const steps = [
         title: 'LTV e Recorrência',
         text: 'Alta taxa de recompra e assinatura. Clientes voltam sozinhos, mês após mês.',
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
             </svg>
         ),
@@ -39,7 +39,7 @@ const steps = [
         title: 'Previsibilidade',
         text: 'Mais margem para tráfego significa escala segura. Sem sustos no caixa.',
         icon: (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
         ),
@@ -80,9 +80,11 @@ export const NutraCarousel: React.FC = () => {
                 height: `${steps.length * 80}vh`,
             }}
         >
-            {/* Sticky container */}
-            <div className="sticky top-0 h-screen flex flex-col justify-evenly overflow-hidden">
-
+            {/* Sticky container — uses dvh with vh fallback */}
+            <div
+                className="sticky top-0 flex flex-col overflow-hidden"
+                style={{ height: '100dvh' }}
+            >
                 {/* Background glow */}
                 <div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-[180px] opacity-[0.04] pointer-events-none"
@@ -90,11 +92,11 @@ export const NutraCarousel: React.FC = () => {
                 />
 
                 {/* ─── HEADER ─── */}
-                <div className="flex-shrink-0 pt-4 sm:pt-10 pb-3 sm:pb-6 flex flex-col items-center gap-1.5 sm:gap-3 text-center px-5 sm:px-8 relative z-10">
-                    <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5">
+                <div className="flex-shrink-0 pt-[3vh] pb-[1.5vh] flex flex-col items-center gap-[0.8vh] text-center px-5 sm:px-8 relative z-10">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5">
                         <span className="w-1.5 h-1.5 rounded-full mr-2" style={{ backgroundColor: ACCENT }} />
                         <span
-                            className="text-white/70 text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase"
+                            className="text-white/70 text-[10px] font-semibold tracking-[0.2em] uppercase"
                             style={{ fontFamily: 'var(--subtitle-font)' }}
                         >
                             POR QUE NUTRA
@@ -102,7 +104,7 @@ export const NutraCarousel: React.FC = () => {
                     </div>
 
                     <h2
-                        className="text-xl sm:text-3xl md:text-4xl font-bold text-white leading-tight max-w-3xl"
+                        className="text-[clamp(1.1rem,4.5vw,2.5rem)] font-bold text-white leading-tight max-w-3xl"
                         style={{ fontFamily: 'var(--title-font)' }}
                     >
                         Por que Nutra é a categoria mais{' '}
@@ -111,15 +113,15 @@ export const NutraCarousel: React.FC = () => {
                 </div>
 
                 {/* ─── TIMELINE DOTS ─── */}
-                <div className="flex-shrink-0 w-full max-w-[500px] mx-auto px-8 sm:px-8 pb-4 sm:pb-8 relative z-10">
+                <div className="flex-shrink-0 w-full max-w-[400px] mx-auto px-8 py-[1.5vh] relative z-10">
                     <div className="relative flex items-center justify-between">
                         {/* Track bg */}
-                        <div className="absolute left-4 right-4 sm:left-5 sm:right-5 top-1/2 h-px -translate-y-1/2" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
+                        <div className="absolute left-4 right-4 top-1/2 h-px -translate-y-1/2" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
                         {/* Active track */}
                         <div
-                            className="absolute left-4 sm:left-5 top-1/2 h-px -translate-y-1/2 rounded-full"
+                            className="absolute left-4 top-1/2 h-px -translate-y-1/2 rounded-full"
                             style={{
-                                width: `calc(${(activeIndex / (steps.length - 1)) * 100}% - ${activeIndex === 0 ? 0 : 20}px)`,
+                                width: `calc(${(activeIndex / (steps.length - 1)) * 100}% - ${activeIndex === 0 ? 0 : 16}px)`,
                                 background: ACCENT,
                                 transition: 'width 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
@@ -134,20 +136,20 @@ export const NutraCarousel: React.FC = () => {
                                     className="relative z-10"
                                     style={{
                                         transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                        transform: isCurrent ? 'scale(1.2)' : 'scale(1)',
+                                        transform: isCurrent ? 'scale(1.15)' : 'scale(1)',
                                     }}
                                 >
                                     <div
-                                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center"
+                                        className="w-8 h-8 rounded-full flex items-center justify-center"
                                         style={{
                                             backgroundColor: isCurrent ? ACCENT : isPassed ? `${ACCENT}18` : '#0c0c0c',
                                             border: `1.5px solid ${isCurrent ? ACCENT : isPassed ? `${ACCENT}50` : 'rgba(255,255,255,0.08)'}`,
-                                            boxShadow: isCurrent ? `0 0 16px ${ACCENT}35` : 'none',
+                                            boxShadow: isCurrent ? `0 0 12px ${ACCENT}35` : 'none',
                                             transition: 'all 0.4s ease',
                                         }}
                                     >
                                         <span
-                                            className="text-[9px] sm:text-[11px] font-bold"
+                                            className="text-[9px] font-bold"
                                             style={{
                                                 color: isCurrent ? '#000' : isPassed ? ACCENT : 'rgba(255,255,255,0.2)',
                                                 fontFamily: 'var(--subtitle-font)',
@@ -163,9 +165,9 @@ export const NutraCarousel: React.FC = () => {
                     </div>
                 </div>
 
-                {/* ─── CARD AREA ─── */}
-                <div className="flex-shrink-0 flex items-center justify-center px-3 sm:px-8 relative z-10 overflow-hidden">
-                    <div className="relative w-full max-w-[620px] min-h-[180px] sm:min-h-[280px] md:min-h-[300px]">
+                {/* ─── CARD AREA — grows to fill remaining space ─── */}
+                <div className="flex-1 min-h-0 flex items-center justify-center px-4 sm:px-8 relative z-10">
+                    <div className="relative w-full max-w-[620px] h-full max-h-[280px] sm:max-h-[350px]">
                         {steps.map((step, i) => {
                             const isActive = i === activeIndex;
                             const isPast = i < activeIndex;
@@ -186,26 +188,26 @@ export const NutraCarousel: React.FC = () => {
                                     }}
                                 >
                                     <div
-                                        className="relative w-full overflow-hidden"
+                                        className="relative w-full h-full overflow-hidden flex flex-col justify-center"
                                         style={{
                                             backgroundColor: CARD_BG,
                                             border: '1px solid rgba(255, 255, 255, 0.08)',
                                             borderRadius: '1.25rem',
-                                            padding: 'clamp(1.2rem, 3vw, 2rem) clamp(1.2rem, 3vw, 2rem) clamp(1.4rem, 3vw, 2.2rem)',
+                                            padding: 'clamp(1rem, 2.5vh, 2rem) clamp(1.2rem, 3vw, 2rem)',
                                             boxShadow: '0 0 0 1px rgba(0,0,0,1), 0 20px 40px -10px rgba(0,0,0,0.8)',
                                         }}
                                     >
                                         {/* Number ghost */}
                                         <span
-                                            className="absolute top-4 right-5 text-6xl font-black opacity-[0.03] pointer-events-none select-none"
+                                            className="absolute top-4 right-5 text-5xl sm:text-6xl font-black opacity-[0.03] pointer-events-none select-none"
                                             style={{ fontFamily: 'var(--title-font)' }}
                                         >
                                             {step.number}
                                         </span>
 
-                                        <div className="relative z-10 flex flex-col gap-3">
+                                        <div className="relative z-10 flex flex-col gap-[1.2vh]">
                                             <div
-                                                className="w-11 h-11 rounded-lg flex items-center justify-center"
+                                                className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center"
                                                 style={{
                                                     backgroundColor: `${ACCENT}08`,
                                                     border: `1px solid ${ACCENT}12`,
@@ -215,7 +217,7 @@ export const NutraCarousel: React.FC = () => {
                                             </div>
 
                                             <h3
-                                                className="text-xl sm:text-2xl font-bold text-white"
+                                                className="text-lg sm:text-2xl font-bold text-white"
                                                 style={{ fontFamily: 'var(--title-font)' }}
                                             >
                                                 {step.title}
@@ -224,7 +226,7 @@ export const NutraCarousel: React.FC = () => {
                                             <div className="w-8 h-[2px] rounded-full" style={{ backgroundColor: ACCENT }} />
 
                                             <p
-                                                className="text-[#a0a8b8] text-sm sm:text-base leading-relaxed max-w-md"
+                                                className="text-[#a0a8b8] text-[13px] sm:text-base leading-relaxed max-w-md"
                                                 style={{ fontFamily: 'var(--subtitle-font)' }}
                                             >
                                                 {step.text}
@@ -238,9 +240,9 @@ export const NutraCarousel: React.FC = () => {
                 </div>
 
                 {/* ─── FOOTER ─── */}
-                <div className="flex-shrink-0 pt-4 sm:pt-0 py-3 sm:py-6 flex justify-center px-5 relative z-20">
+                <div className="flex-shrink-0 py-[1.5vh] flex justify-center px-5 relative z-20">
                     <p
-                        className="text-center text-[#a0a8b8] text-[11px] sm:text-sm max-w-lg"
+                        className="text-center text-[#a0a8b8] text-[10px] sm:text-sm max-w-lg"
                         style={{ fontFamily: 'var(--subtitle-font)' }}
                     >
                         Diferente de infoproduto de ticket único, aqui você tem{' '}
