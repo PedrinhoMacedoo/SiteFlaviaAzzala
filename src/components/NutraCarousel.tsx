@@ -81,7 +81,7 @@ export const NutraCarousel: React.FC = () => {
             }}
         >
             {/* Sticky container */}
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+            <div className="sticky top-0 h-screen flex flex-col justify-evenly overflow-hidden">
 
                 {/* Background glow */}
                 <div
@@ -90,7 +90,7 @@ export const NutraCarousel: React.FC = () => {
                 />
 
                 {/* ─── HEADER ─── */}
-                <div className="flex-shrink-0 pt-4 sm:pt-10 pb-8 sm:pb-6 flex flex-col items-center gap-1.5 sm:gap-3 text-center px-5 sm:px-8 relative z-10">
+                <div className="flex-shrink-0 pt-4 sm:pt-10 pb-3 sm:pb-6 flex flex-col items-center gap-1.5 sm:gap-3 text-center px-5 sm:px-8 relative z-10">
                     <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5">
                         <span className="w-1.5 h-1.5 rounded-full mr-2" style={{ backgroundColor: ACCENT }} />
                         <span
@@ -111,7 +111,7 @@ export const NutraCarousel: React.FC = () => {
                 </div>
 
                 {/* ─── TIMELINE DOTS ─── */}
-                <div className="flex-shrink-0 w-full max-w-[500px] mx-auto px-8 sm:px-8 pb-10 sm:pb-8 relative z-10">
+                <div className="flex-shrink-0 w-full max-w-[500px] mx-auto px-8 sm:px-8 pb-4 sm:pb-8 relative z-10">
                     <div className="relative flex items-center justify-between">
                         {/* Track bg */}
                         <div className="absolute left-4 right-4 sm:left-5 sm:right-5 top-1/2 h-px -translate-y-1/2" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
@@ -165,7 +165,7 @@ export const NutraCarousel: React.FC = () => {
 
                 {/* ─── CARD AREA ─── */}
                 <div className="flex-shrink-0 flex items-center justify-center px-3 sm:px-8 relative z-10 overflow-hidden">
-                    <div className="relative w-full max-w-[620px] min-h-[220px] sm:min-h-[280px] md:min-h-[300px]">
+                    <div className="relative w-full max-w-[620px] min-h-[180px] sm:min-h-[280px] md:min-h-[300px]">
                         {steps.map((step, i) => {
                             const isActive = i === activeIndex;
                             const isPast = i < activeIndex;
@@ -238,7 +238,7 @@ export const NutraCarousel: React.FC = () => {
                 </div>
 
                 {/* ─── FOOTER ─── */}
-                <div className="flex-shrink-0 pt-16 sm:pt-0 py-4 sm:py-6 flex justify-center px-5 relative z-20">
+                <div className="flex-shrink-0 pt-4 sm:pt-0 py-3 sm:py-6 flex justify-center px-5 relative z-20">
                     <p
                         className="text-center text-[#a0a8b8] text-[11px] sm:text-sm max-w-lg"
                         style={{ fontFamily: 'var(--subtitle-font)' }}
