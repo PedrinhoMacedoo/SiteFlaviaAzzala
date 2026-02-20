@@ -4,7 +4,7 @@ import { TrendingDown, ArrowUpRight, AlertCircle, CheckCircle2 } from 'lucide-re
 const COLORS = {
     brazil: '#FF5C5C',
     usa: '#FFD700',
-    bg: '#020202',
+    bg: '#000000',
     cardBg: '#080808',
     cardBorder: 'rgba(255, 255, 255, 0.08)',
     text: {

@@ -25,7 +25,7 @@ const IconGuarantee = () => (
 
 export const Hero = () => {
     return (
-        <div className="relative w-full h-screen min-h-[800px] overflow-hidden bg-[#0a0a0a] font-lexend">
+        <div className="relative w-full h-screen min-h-[800px] overflow-hidden bg-[#000000] font-lexend">
             {/* Background Layer with Overlay */}
             <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
                 <div
