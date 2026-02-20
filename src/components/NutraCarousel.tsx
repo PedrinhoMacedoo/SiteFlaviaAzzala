@@ -165,7 +165,7 @@ export const NutraCarousel: React.FC = () => {
 
                 {/* ─── CARD AREA ─── */}
                 <div className="flex-shrink-0 flex items-center justify-center px-3 sm:px-8 relative z-10 overflow-hidden">
-                    <div className="relative w-full max-w-[620px]" style={{ minHeight: '180px' }}>
+                    <div className="relative w-full max-w-[620px] min-h-[220px] sm:min-h-[280px] md:min-h-[300px]">
                         {steps.map((step, i) => {
                             const isActive = i === activeIndex;
                             const isPast = i < activeIndex;
