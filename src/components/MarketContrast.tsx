@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { TrendingDown, ArrowUpRight, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 const COLORS = {
     brazil: '#FF5C5C',
