@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SovereignButton } from './SovereignButton';
 
 const ACCENT = '#F5D060';
@@ -16,6 +16,8 @@ export const ParaQuem: React.FC = () => {
         { bold: 'Low Profile', text: 'Quem quer operar no digital sem precisar aparecer, criar conteúdo ou depender de audiência' },
         { bold: 'Gestores de Tráfego', text: 'Gestores de tráfego local que já sabem gerar vendas para outros negócios, mas querem estruturar uma operação própria com margem real' }
     ];
+
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
         <section
@@ -85,42 +87,64 @@ export const ParaQuem: React.FC = () => {
                             />
 
                             {/* Content Grid */}
-                            <div className="w-full relative z-10 p-5 sm:p-10">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {items.map((item, i) => (
-                                        <div
-                                            key={i}
-                                            className="relative flex flex-col items-start w-full px-5 py-5 sm:px-6 sm:py-6 rounded-xl"
-                                            style={{
-                                                backgroundColor: 'rgba(255,255,255,0.03)',
-                                                border: `1px solid rgba(255,255,255,0.05)`,
-                                            }}
-                                        >
-                                            <div className="flex items-center gap-3 mb-3 w-full">
-                                                <span
-                                                    className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
+                            <div className="w-full relative z-10 p-5 sm:p-10 mb-2">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                                    {items.map((item, i) => {
+                                        const isActive = activeIndex === i;
+                                        return (
+                                            <div key={i} className="flex flex-col w-full">
+                                                <button
+                                                    onClick={() => setActiveIndex(isActive ? null : i)}
+                                                    className="relative w-full px-5 py-5 rounded-xl text-sm sm:text-[15px] font-semibold transition-all duration-400 cursor-pointer select-none text-left flex items-center"
                                                     style={{
-                                                        backgroundColor: ACCENT,
-                                                        width: '10px',
-                                                        height: '10px',
-                                                        boxShadow: `0 0 10px ${ACCENT}80`
+                                                        fontFamily: 'var(--subtitle-font)',
+                                                        color: isActive ? '#000' : '#fff',
+                                                        backgroundColor: isActive ? ACCENT : 'rgba(255,255,255,0.04)',
+                                                        border: `1px solid ${isActive ? ACCENT : 'rgba(255,255,255,0.08)'}`,
+                                                        boxShadow: isActive
+                                                            ? `0 10px 25px ${ACCENT}25, 0 4px 12px rgba(0,0,0,0.4)`
+                                                            : '0 2px 8px rgba(0,0,0,0.1)',
+                                                        transform: isActive ? 'scale(1.02)' : 'scale(1)',
+                                                        zIndex: isActive ? 10 : 1,
                                                     }}
-                                                />
-                                                <h3
-                                                    className="text-white text-[1rem] sm:text-[1.1rem] font-bold"
-                                                    style={{ fontFamily: 'var(--subtitle-font)' }}
                                                 >
+                                                    <span
+                                                        className="inline-block w-2.5 h-2.5 rounded-full mr-4 transition-all duration-300 flex-shrink-0"
+                                                        style={{
+                                                            backgroundColor: isActive ? '#000' : ACCENT,
+                                                            opacity: isActive ? 0.7 : 0.5,
+                                                        }}
+                                                    />
                                                     {item.bold}
-                                                </h3>
+                                                </button>
+
+                                                {/* Expandable Text directly below card */}
+                                                <div
+                                                    className={`transition-all duration-500 overflow-hidden ${isActive ? 'opacity-100 mt-3' : 'opacity-0 h-0 mt-0'}`}
+                                                    style={{
+                                                        maxHeight: isActive ? '200px' : '0px',
+                                                    }}
+                                                >
+                                                    <div
+                                                        className="px-5 py-4 rounded-xl"
+                                                        style={{
+                                                            backgroundColor: 'rgba(255,255,255,0.03)',
+                                                            border: `1px solid rgba(255,255,255,0.05)`,
+                                                            transform: isActive ? 'translateY(0)' : 'translateY(-10px)',
+                                                            transition: 'transform 0.5s ease-out'
+                                                        }}
+                                                    >
+                                                        <p
+                                                            className="text-[#a0a8b8] text-sm sm:text-[15px] leading-relaxed"
+                                                            style={{ fontFamily: 'var(--subtitle-font)' }}
+                                                        >
+                                                            {item.text}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <p
-                                                className="text-[#a0a8b8] text-sm sm:text-[15px] leading-relaxed pl-[1.4rem]"
-                                                style={{ fontFamily: 'var(--subtitle-font)' }}
-                                            >
-                                                {item.text}
-                                            </p>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
