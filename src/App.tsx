@@ -1,8 +1,15 @@
-import { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Hero } from './components/Hero';
-import { MarketContrast } from './components/MarketContrast';
-import { ParaQuem } from './components/ParaQuem';
-import { NutraCarousel } from './components/NutraCarousel';
+import { SectionDivider } from './components/SectionDivider';
+
+// Lazy load components that are below the fold
+const MarketContrast = React.lazy(() => import('./components/MarketContrast').then(module => ({ default: module.MarketContrast })));
+const ParaQuem = React.lazy(() => import('./components/ParaQuem').then(module => ({ default: module.ParaQuem })));
+const NutraCarousel = React.lazy(() => import('./components/NutraCarousel').then(module => ({ default: module.NutraCarousel })));
+const ProvasSociais = React.lazy(() => import('./components/ProvasSociais').then(module => ({ default: module.ProvasSociais })));
+const Entregaveis = React.lazy(() => import('./components/Entregaveis').then(module => ({ default: module.Entregaveis })));
+const Autoridade = React.lazy(() => import('./components/Autoridade').then(module => ({ default: module.Autoridade })));
+const Rodape = React.lazy(() => import('./components/Rodape').then(module => ({ default: module.Rodape })));
 
 function App() {
   useEffect(() => {
@@ -15,7 +22,8 @@ function App() {
         if (elementoTop < alturaJanela * 0.85) {
           elemento.classList.add("ativo7");
         } else {
-          elemento.classList.remove("ativo7");
+          // Keep it visible once animated for better stability
+          // elemento.classList.remove("ativo7");
         }
       });
     }
@@ -44,9 +52,22 @@ function App() {
   return (
     <div className="min-h-screen bg-black">
       <Hero />
-      <MarketContrast />
-      <ParaQuem />
-      <NutraCarousel />
+      <SectionDivider />
+      <Suspense fallback={<div className="h-[100vh] bg-black" />}>
+        <MarketContrast />
+        <SectionDivider />
+        <ParaQuem />
+        <SectionDivider />
+        <NutraCarousel />
+        <SectionDivider />
+        <ProvasSociais />
+        <SectionDivider />
+        <Entregaveis />
+        <SectionDivider />
+        <Autoridade />
+        <SectionDivider />
+        <Rodape />
+      </Suspense>
     </div>
   );
 }

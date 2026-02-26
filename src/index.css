@@ -7,38 +7,73 @@ body {
   padding: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
+  background-color: #000;
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100%;
 }
 
-/* Global Variables for Consistency */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+[data-elementor-type="wp-page"] {
+  overflow: hidden !important;
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(at 20% 80%, #fff 0.5px, transparent 0px);
+  background-size: 2.5px 2.5px;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.04;
+  mix-blend-mode: screen;
+  user-select: none;
+}
+
+/* Global Variables for Consistency - Fluid Typography */
 :root {
   --title-font: 'Sora', sans-serif;
   --subtitle-font: 'Lexend', sans-serif;
 
-  --mobile-title-size: 1.5rem;
-  --mobile-title-line-height: 1.2;
-  --mobile-subtitle-size: 0.9rem;
-  --mobile-subtitle-line-height: 1.4;
+  --mobile-title-size: clamp(1.1rem, 2.5vw, 2rem);
+  --mobile-title-line-height: 1.15;
+  --mobile-subtitle-size: clamp(0.9rem, 2vw, 1.1rem);
+  --mobile-subtitle-line-height: 1.45;
 
-  --desktop-title-size: 2.5rem;
-  --desktop-title-line-height: 1.1;
-  --desktop-subtitle-size: 1.1rem;
-  --desktop-subtitle-line-height: 1.5;
+  --desktop-title-size: clamp(1.1rem, 2.5vw, 2rem);
+  --desktop-title-line-height: 1.15;
+  --desktop-subtitle-size: clamp(0.9rem, 2vw, 1.1rem);
+  --desktop-subtitle-line-height: 1.45;
 }
 
-/* User Scroll Animations */
+/* User Scroll Animations - Smoother and lighter */
 .scroll-txt {
-  letter-spacing: -1.2em !important;
-  filter: blur(5px);
+  filter: blur(8px);
   opacity: 0;
-  transition: 1.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) !important;
+  transform: translateY(10px);
+  transition: opacity 1s ease-out, filter 1s ease-out, transform 1s ease-out !important;
 }
 
 .ativo7.scroll-txt {
-  letter-spacing: 0em !important;
   filter: blur(0px);
   opacity: 1;
-  transition: 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) !important;
-  transition-delay: 0s !important;
+  transform: translateY(0);
 }
 
 .perspectivax {
@@ -111,11 +146,10 @@ body {
 }
 
 .ativo7 {
-  opacity: 1;
-  transition: 1s;
-  filter: blur(0px);
-  transform: translate(0, 0px) scale(1);
-  transition-delay: 0s !important;
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  transform: translate(0, 0px) scale(1) !important;
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 
 /* Custom Delays */
@@ -175,4 +209,41 @@ body {
     0 0 30px 5px rgba(245, 208, 96, 1),
     0 0 15px rgba(255, 255, 255, 0.9),
     -150px 0 200px 30px rgba(245, 208, 96, 0.25);
+}
+
+/* Sovereign Button Animations */
+@keyframes arrow-nudge {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+.group:hover .animate-indicate {
+  animation: arrow-nudge 0.8s ease-in-out infinite;
+}
+
+@keyframes beam-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dots-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 24px 24px;
+  }
 }

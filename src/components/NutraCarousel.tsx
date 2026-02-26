@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const ACCENT = '#F5D060';
-const CARD_BG = '#080808';
 
 const steps = [
     {
         number: '01',
-        title: 'Ticket Médio Explosivo',
-        text: 'Trabalhamos com pacotes (multi-frascos). Um único cliente gasta $200 a $500.',
+        title: 'Múltiplos Upsells',
+        text: 'Permite múltiplos upsells estruturados dentro do mesmo funil de vendas.',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -16,8 +15,8 @@ const steps = [
     },
     {
         number: '02',
-        title: 'Funil de Upsell',
-        text: 'Permite múltiplas vendas na mesma transação. Cada clique vale mais.',
+        title: 'Trabalha com Pacotes',
+        text: 'Modelos de venda baseados em multi-frascos para elevar o ticket da compra imediata.',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -26,8 +25,8 @@ const steps = [
     },
     {
         number: '03',
-        title: 'LTV e Recorrência',
-        text: 'Alta taxa de recompra e assinatura. Clientes voltam sozinhos, mês após mês.',
+        title: 'Recompra e Assinatura',
+        text: 'Possui forte cultura de recompra recorrente e assinaturas automáticas mensais.',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
@@ -36,8 +35,8 @@ const steps = [
     },
     {
         number: '04',
-        title: 'Previsibilidade',
-        text: 'Mais margem para tráfego significa escala segura. Sem sustos no caixa.',
+        title: 'Aumento do LTV',
+        text: 'Aumenta significativamente o LTV (Lifetime Value) do cliente no médio e longo prazo.',
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -47,210 +46,180 @@ const steps = [
 ];
 
 export const NutraCarousel: React.FC = () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!sectionRef.current) return;
-            const rect = sectionRef.current.getBoundingClientRect();
-            const sectionHeight = sectionRef.current.offsetHeight;
-            const viewportH = window.innerHeight;
-
-            const scrolled = -rect.top;
-            const scrollableRange = sectionHeight - viewportH;
-            const rawProgress = Math.max(0, Math.min(0.999, scrolled / scrollableRange));
-
-            const idx = Math.floor(rawProgress * steps.length);
-            setActiveIndex(Math.min(idx, steps.length - 1));
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <section
-            ref={sectionRef}
             id="nutra-section"
-            className="relative w-full z-20"
-            style={{
-                backgroundColor: '#000',
-                height: `${steps.length * 80}vh`,
-            }}
+            className="relative w-full py-12 sm:py-32 px-4 sm:px-8 flex flex-col items-center justify-center overflow-hidden z-20"
+            style={{ backgroundColor: '#000' }}
         >
-            {/* Sticky container — uses dvh with vh fallback */}
+            {/* Mesh Gradients for background depth */}
             <div
-                className="sticky top-0 flex flex-col overflow-hidden"
-                style={{ height: '100dvh' }}
-            >
-                {/* Background glow */}
-                <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-[180px] opacity-[0.04] pointer-events-none"
-                    style={{ backgroundColor: ACCENT }}
-                />
+                className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.03] blur-[120px] pointer-events-none"
+                style={{ backgroundColor: ACCENT, background: `radial-gradient(circle, ${ACCENT} 0%, transparent 70%)` }}
+            />
+            <div
+                className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-[0.02] blur-[100px] pointer-events-none"
+                style={{ backgroundColor: ACCENT, background: `radial-gradient(circle, ${ACCENT} 0%, transparent 70%)` }}
+            />
 
-                {/* ─── HEADER ─── */}
-                <div className="flex-shrink-0 pt-[3vh] pb-[1.5vh] flex flex-col items-center gap-[0.8vh] text-center px-5 sm:px-8 relative z-10">
-                    <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5">
-                        <span className="w-1.5 h-1.5 rounded-full mr-2" style={{ backgroundColor: ACCENT }} />
-                        <span
-                            className="text-white/70 text-[10px] font-semibold tracking-[0.2em] uppercase"
-                            style={{ fontFamily: 'var(--subtitle-font)' }}
-                        >
-                            POR QUE NUTRA
-                        </span>
-                    </div>
-
-                    <h2
-                        className="text-[clamp(1.1rem,4.5vw,2.5rem)] font-bold text-white leading-tight max-w-3xl"
-                        style={{ fontFamily: 'var(--title-font)' }}
-                    >
-                        Por que Nutra é a categoria mais{' '}
-                        <span style={{ color: ACCENT }}>lucrativa</span> nos EUA?
-                    </h2>
+            {/* HEADER */}
+            <div className="flex flex-col items-center gap-6 text-center mb-16 sm:mb-24 relative z-10">
+                <div className="inline-flex items-center px-4 py-2 rounded-full border border-white/5 bg-white/5 backdrop-blur-md shadow-2xl">
+                    <span className="text-white/80 text-[10px] sm:text-[0.8rem] font-bold tracking-[0.1em] uppercase" style={{ fontFamily: 'var(--subtitle-font)' }}>
+                        — POR QUE NUTRA É A CATEGORIA IDEAL NOS EUA
+                    </span>
                 </div>
 
-                {/* ─── TIMELINE DOTS ─── */}
-                <div className="flex-shrink-0 w-full max-w-[400px] mx-auto px-8 py-[1.5vh] relative z-10">
-                    <div className="relative flex items-center justify-between">
-                        {/* Track bg */}
-                        <div className="absolute left-4 right-4 top-1/2 h-px -translate-y-1/2" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }} />
-                        {/* Active track */}
-                        <div
-                            className="absolute left-4 top-1/2 h-px -translate-y-1/2 rounded-full"
-                            style={{
-                                width: `calc(${(activeIndex / (steps.length - 1)) * 100}% - ${activeIndex === 0 ? 0 : 16}px)`,
-                                background: ACCENT,
-                                transition: 'width 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-                            }}
-                        />
+                <h2 className="text-[length:var(--mobile-title-size)] sm:text-[length:var(--desktop-title-size)] font-bold text-white leading-[1.2] max-w-4xl tracking-tight text-center uppercase" style={{ fontFamily: 'var(--title-font)' }}>
+                    Dentro do mercado americano,<br /> <span style={{ color: ACCENT, position: 'relative' }}>
+                        Nutra
+                        <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" preserveAspectRatio="none">
+                            <path d="M0 5 Q 25 0 50 5 T 100 5" fill="none" stroke={ACCENT} strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+                        </svg>
+                    </span> é a categoria mais escalável
+                </h2>
 
-                        {steps.map((step, i) => {
-                            const isCurrent = i === activeIndex;
-                            const isPassed = i < activeIndex;
-                            return (
-                                <div
-                                    key={i}
-                                    className="relative z-10"
-                                    style={{
-                                        transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                                        transform: isCurrent ? 'scale(1.15)' : 'scale(1)',
-                                    }}
-                                >
-                                    <div
-                                        className="w-8 h-8 rounded-full flex items-center justify-center"
-                                        style={{
-                                            backgroundColor: isCurrent ? ACCENT : isPassed ? `${ACCENT}18` : '#0c0c0c',
-                                            border: `1.5px solid ${isCurrent ? ACCENT : isPassed ? `${ACCENT}50` : 'rgba(255,255,255,0.08)'}`,
-                                            boxShadow: isCurrent ? `0 0 12px ${ACCENT}35` : 'none',
-                                            transition: 'all 0.4s ease',
-                                        }}
-                                    >
-                                        <span
-                                            className="text-[9px] font-bold"
-                                            style={{
-                                                color: isCurrent ? '#000' : isPassed ? ACCENT : 'rgba(255,255,255,0.2)',
-                                                fontFamily: 'var(--subtitle-font)',
-                                                transition: 'color 0.3s ease',
-                                            }}
-                                        >
-                                            {step.number}
-                                        </span>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* ─── CARD AREA — grows to fill remaining space ─── */}
-                <div className="flex-1 min-h-0 flex items-center justify-center px-4 sm:px-8 relative z-10">
-                    <div className="relative w-full max-w-[620px] h-full max-h-[280px] sm:max-h-[350px]">
-                        {steps.map((step, i) => {
-                            const isActive = i === activeIndex;
-                            const isPast = i < activeIndex;
-
-                            return (
-                                <div
-                                    key={i}
-                                    className="absolute inset-0"
-                                    style={{
-                                        opacity: isActive ? 1 : 0,
-                                        transform: isActive
-                                            ? 'translateY(0)'
-                                            : isPast
-                                                ? 'translateY(-20px)'
-                                                : 'translateY(20px)',
-                                        transition: 'opacity 0.45s ease, transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
-                                        pointerEvents: isActive ? 'auto' : 'none',
-                                    }}
-                                >
-                                    <div
-                                        className="relative w-full h-full overflow-hidden flex flex-col justify-center"
-                                        style={{
-                                            backgroundColor: CARD_BG,
-                                            border: '1px solid rgba(255, 255, 255, 0.08)',
-                                            borderRadius: '1.25rem',
-                                            padding: 'clamp(1rem, 2.5vh, 2rem) clamp(1.2rem, 3vw, 2rem)',
-                                            boxShadow: '0 0 0 1px rgba(0,0,0,1), 0 20px 40px -10px rgba(0,0,0,0.8)',
-                                        }}
-                                    >
-                                        {/* Number ghost */}
-                                        <span
-                                            className="absolute top-4 right-5 text-5xl sm:text-6xl font-black opacity-[0.03] pointer-events-none select-none"
-                                            style={{ fontFamily: 'var(--title-font)' }}
-                                        >
-                                            {step.number}
-                                        </span>
-
-                                        <div className="relative z-10 flex flex-col gap-[1.2vh]">
-                                            <div
-                                                className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center"
-                                                style={{
-                                                    backgroundColor: `${ACCENT}08`,
-                                                    border: `1px solid ${ACCENT}12`,
-                                                }}
-                                            >
-                                                {step.icon}
-                                            </div>
-
-                                            <h3
-                                                className="text-lg sm:text-2xl font-bold text-white"
-                                                style={{ fontFamily: 'var(--title-font)' }}
-                                            >
-                                                {step.title}
-                                            </h3>
-
-                                            <div className="w-8 h-[2px] rounded-full" style={{ backgroundColor: ACCENT }} />
-
-                                            <p
-                                                className="text-[#a0a8b8] text-[13px] sm:text-base leading-relaxed max-w-md"
-                                                style={{ fontFamily: 'var(--subtitle-font)' }}
-                                            >
-                                                {step.text}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* ─── FOOTER ─── */}
-                <div className="flex-shrink-0 py-[1.5vh] flex justify-center px-5 relative z-20">
-                    <p
-                        className="text-center text-[#a0a8b8] text-[10px] sm:text-sm max-w-lg"
-                        style={{ fontFamily: 'var(--subtitle-font)' }}
-                    >
-                        Diferente de infoproduto de ticket único, aqui você tem{' '}
-                        <span className="text-white font-semibold">mais faturamento por cliente</span> e{' '}
-                        <span className="text-white font-semibold">mais lucro no bolso</span>.
+                {/* Frase de Impacto Principal - Hierarquia Clara */}
+                <div className="mt-6 flex flex-col items-center gap-1 max-w-3xl">
+                    <p className="text-white text-xl sm:text-2xl font-black tracking-tighter leading-tight uppercase" style={{ fontFamily: 'var(--title-font)' }}>
+                        Não é apenas vender em dólar.
+                    </p>
+                    <p className="text-[#F5D060] text-xl sm:text-2xl font-black tracking-tighter uppercase" style={{ fontFamily: 'var(--title-font)', textShadow: '0 0 20px rgba(245,208,96,0.2)' }}>
+                        É vender dentro da <span className="underline decoration-white/20 underline-offset-8">categoria certa</span>.
+                    </p>
+                    <p className="text-[#a0a8b8] text-base sm:text-lg font-light mt-6 opacity-80 uppercase tracking-widest" style={{ fontFamily: 'var(--subtitle-font)' }}>
+                        Porque ela permite uma estrutura agressiva e lucrativa desde o primeiro dia:
                     </p>
                 </div>
             </div>
+
+            {/* GRID LAYOUT - Replaces Carousel */}
+            <div className="relative w-full max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 z-10 px-4 sm:px-6">
+                {steps.map((step, i) => (
+                    <div
+                        key={i}
+                        className="relative group p-8 sm:p-10 rounded-[2rem] overflow-hidden transition-all duration-500 hover:scale-[1.01]"
+                        style={{
+                            backgroundColor: 'rgba(10, 10, 10, 0.6)',
+                            backdropFilter: 'blur(20px)',
+                            border: '1px solid rgba(255,255,255,0.06)',
+                            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                        }}
+                    >
+                        {/* Hover Border Shine */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                            style={{
+                                background: `linear-gradient(135deg, ${ACCENT}15 0%, transparent 40%, transparent 60%, ${ACCENT}15 100%)`,
+                                border: `1px solid ${ACCENT}30`,
+                                borderRadius: 'inherit'
+                            }}
+                        />
+
+                        <div className="relative z-10 flex flex-col items-start gap-6 h-full">
+                            {/* Icon with glow */}
+                            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-3xl flex items-center justify-center flex-shrink-0"
+                                style={{
+                                    backgroundColor: 'rgba(255,255,255,0.02)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}>
+                                <div className="absolute inset-0 rounded-3xl opacity-10 blur-xl group-hover:opacity-20 transition-opacity" style={{ backgroundColor: ACCENT }} />
+                                {React.cloneElement(step.icon as React.ReactElement<any>, {
+                                    width: 32,
+                                    height: 32,
+                                    strokeWidth: 1.5
+                                })}
+                            </div>
+
+                            <div className="flex flex-col gap-3 flex-1 overflow-hidden relative">
+                                <div className="flex items-center gap-4 mb-2">
+                                    <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] opacity-40 uppercase whitespace-nowrap" style={{ color: ACCENT }}>STP-{step.number}</span>
+                                    <div className="h-px w-8 sm:w-12 bg-white/5" />
+                                </div>
+                                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight break-words" style={{ fontFamily: 'var(--title-font)' }}>
+                                    {step.title}
+                                </h3>
+                                <p className="text-[#a0a8b8] text-sm sm:text-base font-light leading-relaxed max-w-full" style={{ fontFamily: 'var(--subtitle-font)' }}>
+                                    {step.text}
+                                </p>
+                            </div>
+
+                            {/* Ghost Number (ajustado para ficar discreto no grid) */}
+                            <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-black opacity-[0.03] pointer-events-none select-none tracking-tighter" style={{ fontFamily: 'var(--title-font)', color: ACCENT }}>
+                                {step.number}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Final Statement Tags - Refined */}
+            <div className="flex flex-col items-center gap-8 text-center mt-20 sm:mt-28 relative z-10 w-full max-w-4xl px-4">
+                <p className="text-white/60 text-sm sm:text-base font-medium tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--subtitle-font)' }}>
+                    Diferente de infoproduto… Aqui você tem:
+                </p>
+
+                <div className="relative flex overflow-x-hidden w-full max-w-[100vw] mt-4 w-screen -ml-4 sm:ml-0 sm:w-full" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                    <div className="flex animate-ticker whitespace-nowrap gap-4 sm:gap-6">
+                        {[
+                            "Mais faturamento por cliente",
+                            "Mais margem para tráfego",
+                            "Mais previsibilidade de escala",
+                            "Mais faturamento por cliente",
+                            "Mais margem para tráfego",
+                            "Mais previsibilidade de escala",
+                        ].map((tag, idx) => (
+                            <div key={idx} className="flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-sm shadow-lg hover:border-[#F5D060]/30 transition-all duration-300">
+                                <span className="w-1.5 h-1.5 rounded-full shadow-[0_0_10px_rgba(245,208,96,0.6)]" style={{ backgroundColor: ACCENT }} />
+                                <span className="text-[#e2e8f0] text-[0.85rem] sm:text-[0.95rem] font-medium tracking-wide">{tag}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Secondary list for seamless loop */}
+                    <div className="absolute top-0 flex animate-ticker2 whitespace-nowrap gap-4 sm:gap-6 min-w-full">
+                        {[
+                            "Mais faturamento por cliente",
+                            "Mais margem para tráfego",
+                            "Mais previsibilidade de escala",
+                            "Mais faturamento por cliente",
+                            "Mais margem para tráfego",
+                            "Mais previsibilidade de escala",
+                        ].map((tag, idx) => (
+                            <div key={`dup-${idx}`} className="flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-full border border-white/5 bg-white/[0.03] backdrop-blur-sm shadow-lg hover:border-[#F5D060]/30 transition-all duration-300">
+                                <span className="w-1.5 h-1.5 rounded-full shadow-[0_0_10px_rgba(245,208,96,0.6)]" style={{ backgroundColor: ACCENT }} />
+                                <span className="text-[#e2e8f0] text-[0.85rem] sm:text-[0.95rem] font-medium tracking-wide">{tag}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <style>{`
+                @keyframes ticker {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(calc(-100% - 1rem)); }
+                }
+                @keyframes ticker2 {
+                    0% { transform: translateX(calc(100% + 1rem)); }
+                    100% { transform: translateX(0); }
+                }
+                .animate-ticker {
+                    animation: ticker 30s linear infinite;
+                }
+                .animate-ticker2 {
+                    animation: ticker2 30s linear infinite;
+                }
+                @media (min-width: 640px) {
+                    @keyframes ticker {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(calc(-100% - 1.5rem)); }
+                    }
+                    @keyframes ticker2 {
+                        0% { transform: translateX(calc(100% + 1.5rem)); }
+                        100% { transform: translateX(0); }
+                    }
+                }
+            `}</style>
         </section>
     );
 };

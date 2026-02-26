@@ -288,9 +288,9 @@ const CardMarket = ({ subtitle, title, items, flag, themeColor, icon, type }: Ca
 export const MarketContrast = () => {
     // Force specific mobile styles with high specificity using ID selector
     const responsiveStyles = `
-        @media (max-width: 768px) {
-            #market-section .market-pad { padding-top: 4rem !important; padding-bottom: 4rem !important; }
-            #market-section .market-header { margin-bottom: 2.5rem !important; }
+            @media (max-width: 768px) {
+                #market-section .market-pad { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+                #market-section .market-header { margin-bottom: 2.5rem !important; }
             #market-section .market-title { 
                 font-size: var(--mobile-title-size) !important; 
                 line-height: var(--mobile-title-line-height) !important; 
@@ -381,7 +381,11 @@ export const MarketContrast = () => {
                 text-align: left !important;
              }
             
-            #market-section .flag-bg { font-size: 4rem !important; }
+            #market-section .flag-bg { 
+                font-size: 5rem !important; 
+                opacity: 0.25 !important;
+                filter: grayscale(30%) blur(0px) !important;
+            }
         }
     `;
 
@@ -411,30 +415,31 @@ export const MarketContrast = () => {
 
             {/* Header */}
             <div className="market-header" style={{ textAlign: 'center', marginBottom: '5rem', position: 'relative', zIndex: 10 }}>
-                <h2 className="market-title" style={{
+                <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    color: '#F5D060',
+                    fontSize: '0.9rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.05em',
+                    marginBottom: '1rem',
+                    textTransform: 'uppercase'
+                }}>
+                    — A VIRADA DE CHAVE
+                </div>
+                <h2 className="market-title text-[length:var(--mobile-title-size)] sm:text-[length:var(--desktop-title-size)]" style={{
                     fontFamily: 'var(--title-font)',
-                    fontSize: 'var(--desktop-title-size)',
                     fontWeight: 700,
                     color: '#fff',
                     marginBottom: '1.5rem',
                     lineHeight: 'var(--desktop-title-line-height)',
                     maxWidth: '1000px',
-                    margin: '0 auto 1.5rem auto',
+                    margin: '0 auto',
                     textTransform: 'uppercase'
                 }}>
-                    O PROBLEMA NÃO É SUA CAPACIDADE. <span style={{ color: '#F5D060' }}>É O MERCADO ONDE VOCÊ TENTA ESCALAR.</span>
+                    O PROBLEMA NÃO É SUA CAPACIDADE.<br />
+                    <span style={{ color: '#F5D060' }}>É O MERCADO ONDE VOCÊ ESTÁ TENTANDO ESCALAR.</span>
                 </h2>
-                <p className="market-desc" style={{
-                    fontFamily: 'var(--subtitle-font)',
-                    fontSize: 'var(--desktop-subtitle-size)',
-                    color: '#999',
-                    fontWeight: 300,
-                    maxWidth: '800px',
-                    margin: '0 auto',
-                    lineHeight: 'var(--desktop-subtitle-line-height)'
-                }}>
-                    Se você já entendeu que o jogo não é trabalhar mais — é escolher o mercado certo — preste atenção nesta comparação:
-                </p>
             </div>
 
             {/* Grid Container - CSS Grid Implementation */}
@@ -453,10 +458,10 @@ export const MarketContrast = () => {
                     subtitle="O OCEANO VERMELHO"
                     title="NO BRASIL"
                     items={[
-                        "Poder de compra limitado: Corroído pela inflação.",
-                        "CPM Alto: Custo por mil impressões cada vez mais caro.",
-                        "Público sensível a preço: Difícil vender tickets altos.",
-                        "Margens apertadas: O lucro não sustenta a escala."
+                        "Poder de compra limitado",
+                        "CPM alto",
+                        "Público mais sensível a preço",
+                        "Margens apertadas"
                     ]}
                     flag="🇧🇷"
                     themeColor={COLORS.brazil}
@@ -466,12 +471,12 @@ export const MarketContrast = () => {
                 <CardMarket
                     type="positive"
                     subtitle="O OCEANO AZUL"
-                    title="NOS EUA"
+                    title="NOS ESTADOS UNIDOS"
                     items={[
-                        "Maior mercado consumidor do mundo: Volume massivo.",
-                        "Cultura de compra online: O uso do cartão de crédito é padrão e imediato.",
-                        "Decisão rápida: Menos objeções na hora da compra.",
-                        "Tolerância a High Ticket: É normal pagar caro por qualidade."
+                        "Maior mercado consumidor do mundo",
+                        "Cultura consolidada de compra online",
+                        "Decisão mais rápida",
+                        "Maior tolerância a ticket elevado"
                     ]}
                     flag="🇺🇸"
                     themeColor={COLORS.usa}
@@ -482,15 +487,17 @@ export const MarketContrast = () => {
             {/* Footer Statement */}
             <div style={{ position: 'relative', zIndex: 10, marginTop: '5rem', textAlign: 'center' }}>
                 <p style={{
-                    color: 'rgba(255,255,255,0.5)',
-                    fontStyle: 'italic',
-                    fontFamily: 'serif',
+                    color: 'rgba(255,255,255,0.7)',
+                    fontFamily: 'var(--subtitle-font)',
                     fontSize: '1.25rem',
+                    fontWeight: 400,
                     cursor: 'default',
                     maxWidth: '600px',
-                    margin: '0 auto'
+                    margin: '0 auto',
+                    lineHeight: 1.6
                 }}>
-                    "Você não precisa trabalhar mais horas. Você precisa operar onde existe dinheiro circulando."
+                    Você não precisa trabalhar mais.<br />
+                    <strong style={{ color: '#fff', fontWeight: 600 }}>Precisa operar onde existe dinheiro circulando.</strong>
                 </p>
             </div>
         </section>
