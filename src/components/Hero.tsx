@@ -12,17 +12,46 @@ export const Hero = () => {
             overflow: 'hidden',
             fontFamily: 'Sora, sans-serif'
         }}>
-            {/* Fixed Background Layer */}
-            <div
-                className="hero-bg"
+            {/* LCP Optimized Background Image - Desktop */}
+            <img
+                src={bgImage}
+                alt="Flavia Zaala Background"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+                className="hero-bg-img hidden md:block"
                 style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     width: '100%',
                     height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
                     zIndex: 0,
-                    willChange: 'filter'
+                    willChange: 'transform'
+                }}
+            />
+
+            {/* LCP Optimized Background Image - Mobile */}
+            <img
+                src={bgMobile}
+                alt="Flavia Zaala Mobile Background"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+                className="hero-bg-img-mobile block md:hidden"
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center top',
+                    zIndex: 0,
+                    willChange: 'transform',
+                    filter: 'brightness(1.15) contrast(1.05)',
                 }}
             />
 
@@ -151,13 +180,6 @@ export const Hero = () => {
             </div>
 
             <style>{`
-                .hero-bg {
-                    background-image: url(${bgImage});
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                }
-
                 .hero-overlay {
                     position: absolute;
                     inset: 0;
@@ -167,13 +189,6 @@ export const Hero = () => {
                 }
 
                 @media (max-width: 768px) {
-                    .hero-bg {
-                        background-image: url(${bgMobile}) !important;
-                        background-position: center top !important;
-                        background-size: cover !important;
-                        filter: brightness(1.15) contrast(1.05); /* Mais clareza na imagem real */
-                    }
-
                     .hero-overlay {
                         /* Inicia 100% transparente no topo para o rosto respirar, e escurece mais embaixo pro texto */
                         background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.95) 75%, #000 100%) !important;

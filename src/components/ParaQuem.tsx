@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SovereignButton } from './SovereignButton';
 
 const ACCENT = '#F5D060';
@@ -16,8 +16,6 @@ export const ParaQuem: React.FC = () => {
         { bold: 'Low Profile', text: 'Quem quer operar no digital sem precisar aparecer, criar conteúdo ou depender de audiência' },
         { bold: 'Gestores de Tráfego', text: 'Gestores de tráfego local que já sabem gerar vendas para outros negócios, mas querem estruturar uma operação própria com margem real' }
     ];
-
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
         <section
@@ -70,12 +68,11 @@ export const ParaQuem: React.FC = () => {
                 <div className="w-full max-w-[1000px]">
                     <div className="group relative" style={{ perspective: '1200px', cursor: 'default' }}>
                         <div
-                            className="relative flex flex-col items-center overflow-hidden transition-all duration-500"
+                            className="relative w-full flex flex-col items-center overflow-hidden transition-all duration-500"
                             style={{
                                 backgroundColor: CARD_BG,
                                 border: '1px solid rgba(255, 255, 255, 0.08)',
                                 borderRadius: '1.5rem',
-                                padding: '3rem 2rem',
                                 boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
                             }}
                         >
@@ -87,74 +84,44 @@ export const ParaQuem: React.FC = () => {
                                 }}
                             />
 
-                            {/* Buttons Grid - 2 columns on desktop to fill the width */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10 w-full mb-12">
-                                {items.map((item, i) => {
-                                    const isActive = activeIndex === i;
-                                    return (
-                                        <button
-                                            key={i}
-                                            onClick={() => setActiveIndex(isActive ? null : i)}
-                                            className="relative w-full px-5 py-5 rounded-xl text-sm sm:text-[15px] font-semibold transition-all duration-400 cursor-pointer select-none text-left"
-                                            style={{
-                                                fontFamily: 'var(--subtitle-font)',
-                                                color: isActive ? '#000' : '#fff',
-                                                backgroundColor: isActive ? ACCENT : 'rgba(255,255,255,0.04)',
-                                                border: `1px solid ${isActive ? ACCENT : 'rgba(255,255,255,0.08)'}`,
-                                                boxShadow: isActive
-                                                    ? `0 10px 25px ${ACCENT}25, 0 4px 12px rgba(0,0,0,0.4)`
-                                                    : '0 2px 8px rgba(0,0,0,0.1)',
-                                                transform: isActive ? 'scale(1.02)' : 'scale(1)',
-                                            }}
-                                        >
-                                            <span
-                                                className="inline-block w-2.5 h-2.5 rounded-full mr-4 transition-all duration-300"
-                                                style={{
-                                                    backgroundColor: isActive ? '#000' : ACCENT,
-                                                    opacity: isActive ? 0.7 : 0.5,
-                                                }}
-                                            />
-                                            {item.bold}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Center Description Area - Fills the empty space below grid */}
-                            <div
-                                className="relative z-10 w-full flex flex-col items-center justify-start transition-all duration-500 ease-out"
-                                style={{
-                                    minHeight: activeIndex !== null ? '120px' : '0px',
-                                    opacity: activeIndex !== null ? 1 : 0,
-                                }}
-                            >
-                                {activeIndex !== null ? (
-                                    <div
-                                        className="w-full max-w-3xl text-center bg-white/[0.02] border border-white/5 p-8 rounded-2xl animate-in fade-in zoom-in-95 duration-500"
-                                    >
+                            {/* Content Grid */}
+                            <div className="w-full relative z-10 p-5 sm:p-10">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {items.map((item, i) => (
                                         <div
-                                            className="w-12 h-[3px] rounded-full mb-6 mx-auto"
+                                            key={i}
+                                            className="relative flex flex-col items-start w-full px-5 py-5 sm:px-6 sm:py-6 rounded-xl"
                                             style={{
-                                                backgroundColor: ACCENT,
-                                                boxShadow: `0 0 15px ${ACCENT}40`
-                                            }}
-                                        />
-                                        <p
-                                            className="text-[#c0c8d8] text-lg sm:text-xl leading-relaxed font-medium"
-                                            style={{
-                                                fontFamily: 'var(--subtitle-font)',
+                                                backgroundColor: 'rgba(255,255,255,0.03)',
+                                                border: `1px solid rgba(255,255,255,0.05)`,
                                             }}
                                         >
-                                            ✔ {items[activeIndex].text}
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col items-center justify-center py-6 opacity-30">
-                                        <p className="text-[#a0a8b8] italic text-sm" style={{ fontFamily: 'var(--subtitle-font)' }}>
-                                            Clique em um dos perfis acima para ver os detalhes
-                                        </p>
-                                    </div>
-                                )}
+                                            <div className="flex items-center gap-3 mb-3 w-full">
+                                                <span
+                                                    className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                                    style={{
+                                                        backgroundColor: ACCENT,
+                                                        width: '10px',
+                                                        height: '10px',
+                                                        boxShadow: `0 0 10px ${ACCENT}80`
+                                                    }}
+                                                />
+                                                <h3
+                                                    className="text-white text-[1rem] sm:text-[1.1rem] font-bold"
+                                                    style={{ fontFamily: 'var(--subtitle-font)' }}
+                                                >
+                                                    {item.bold}
+                                                </h3>
+                                            </div>
+                                            <p
+                                                className="text-[#a0a8b8] text-sm sm:text-[15px] leading-relaxed pl-[1.4rem]"
+                                                style={{ fontFamily: 'var(--subtitle-font)' }}
+                                            >
+                                                {item.text}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

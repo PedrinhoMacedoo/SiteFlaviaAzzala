@@ -1,6 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import { Hero } from './components/Hero';
 import { SectionDivider } from './components/SectionDivider';
+import { LazySection } from './components/LazySection';
 
 // Lazy load components that are below the fold
 const MarketContrast = React.lazy(() => import('./components/MarketContrast').then(module => ({ default: module.MarketContrast })));
@@ -53,21 +54,54 @@ function App() {
     <div className="min-h-screen bg-black">
       <Hero />
       <SectionDivider />
-      <Suspense fallback={<div className="h-[100vh] bg-black" />}>
-        <MarketContrast />
-        <SectionDivider />
-        <ParaQuem />
-        <SectionDivider />
-        <NutraCarousel />
-        <SectionDivider />
-        <ProvasSociais />
-        <SectionDivider />
-        <Entregaveis />
-        <SectionDivider />
-        <Autoridade />
-        <SectionDivider />
-        <Rodape />
-      </Suspense>
+
+      <LazySection minHeight="600px" rootMargin="200px 0px">
+        <Suspense fallback={<div className="h-[600px]" />}>
+          <MarketContrast />
+        </Suspense>
+      </LazySection>
+      <SectionDivider />
+
+      <LazySection minHeight="600px" rootMargin="200px 0px">
+        <Suspense fallback={<div className="h-[600px]" />}>
+          <ParaQuem />
+        </Suspense>
+      </LazySection>
+      <SectionDivider />
+
+      <LazySection minHeight="800px" rootMargin="300px 0px">
+        <Suspense fallback={<div className="h-[800px]" />}>
+          <NutraCarousel />
+        </Suspense>
+      </LazySection>
+      <SectionDivider />
+
+      <LazySection minHeight="800px" rootMargin="300px 0px">
+        <Suspense fallback={<div className="h-[800px]" />}>
+          <ProvasSociais />
+        </Suspense>
+      </LazySection>
+      <SectionDivider />
+
+      <LazySection minHeight="600px" rootMargin="200px 0px">
+        <Suspense fallback={<div className="h-[600px]" />}>
+          <Entregaveis />
+        </Suspense>
+      </LazySection>
+      <SectionDivider />
+
+      <LazySection minHeight="600px" rootMargin="200px 0px">
+        <Suspense fallback={<div className="h-[600px]" />}>
+          <Autoridade />
+        </Suspense>
+      </LazySection>
+      <SectionDivider />
+
+      <LazySection minHeight="200px" rootMargin="100px 0px">
+        <Suspense fallback={<div className="h-[200px]" />}>
+          <Rodape />
+        </Suspense>
+      </LazySection>
     </div>
   );
 }

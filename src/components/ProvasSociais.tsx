@@ -82,6 +82,37 @@ export const ProvasSociais: React.FC = () => {
     const openMedia = (item: Testimonial) => setActiveMedia(item);
     const closeMedia = () => setActiveMedia(null);
 
+    const LazyVideo: React.FC<{ src: string }> = ({ src }) => {
+        const videoRef = useRef<HTMLVideoElement>(null);
+
+        useEffect(() => {
+            const currentVideo = videoRef.current;
+            if (!currentVideo || !window.IntersectionObserver) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                const [entry] = entries;
+                if (entry.isIntersecting) {
+                    currentVideo.play().catch(() => { });
+                } else {
+                    currentVideo.pause();
+                }
+            }, { rootMargin: '200px', threshold: 0.1 });
+
+            observer.observe(currentVideo);
+            return () => observer.disconnect();
+        }, []);
+
+        return (
+            <video
+                ref={videoRef}
+                src={src}
+                preload="none"
+                className="w-full h-full object-cover opacity-60 group-hover/card:opacity-90 transition-opacity duration-700"
+                muted loop playsInline
+            />
+        );
+    };
+
     const renderCard = (t: Testimonial, i: number) => (
         <div
             key={i}
@@ -93,11 +124,7 @@ export const ProvasSociais: React.FC = () => {
         >
             {t.type === 'video' ? (
                 <div className="relative w-full aspect-[9/16]">
-                    <video
-                        src={t.src}
-                        className="w-full h-full object-cover opacity-60 group-hover/card:opacity-90 transition-opacity duration-700"
-                        muted loop playsInline autoPlay
-                    />
+                    <LazyVideo src={t.src} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col items-center justify-center p-3 sm:p-4 text-center">
                         <div className="transform scale-75 sm:scale-90 group-hover/card:scale-110 transition-all duration-500 flex flex-col items-center gap-2 sm:gap-4">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(245,208,96,0.3)]" style={{ backgroundColor: ACCENT }}>
