@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Bio: React.FC = () => {
     return (
-        <section id="bio-section" className="relative w-full bg-[#000000] py-24 px-6 sm:px-12 flex justify-center items-center overflow-hidden z-20">
+        <section id="bio-section" className="relative w-full bg-[#000000] py-16 px-6 sm:px-12 flex justify-center items-center overflow-hidden z-20">
 
             {/* Glow Background Top Left */}
             <div

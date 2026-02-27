@@ -5,13 +5,14 @@ import { SovereignButton } from './SovereignButton';
 
 export const Hero = () => {
     return (
-        <div style={{
-            position: 'relative',
-            minHeight: '100vh',
-            width: '100%',
-            overflow: 'hidden',
-            fontFamily: 'Sora, sans-serif'
-        }}>
+        <div
+            className="hero-main-wrapper"
+            style={{
+                position: 'relative',
+                width: '100%',
+                overflow: 'hidden',
+                fontFamily: 'Sora, sans-serif'
+            }}>
             {/* LCP Optimized Background Image - Desktop */}
             <img
                 src={bgImage}
@@ -180,6 +181,10 @@ export const Hero = () => {
             </div>
 
             <style>{`
+                .hero-main-wrapper {
+                    min-height: 100vh;
+                }
+
                 .hero-overlay {
                     position: absolute;
                     inset: 0;
@@ -189,6 +194,10 @@ export const Hero = () => {
                 }
 
                 @media (max-width: 768px) {
+                    .hero-main-wrapper {
+                        min-height: auto !important;
+                    }
+
                     .hero-overlay {
                         /* Inicia 100% transparente no topo para o rosto respirar, e escurece mais embaixo pro texto */
                         background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.95) 75%, #000 100%) !important;
@@ -204,11 +213,13 @@ export const Hero = () => {
                         padding-right: 1rem !important;
                         width: 100% !important;
                         padding-top: 5vh !important;
+                        min-height: auto !important;
+                        padding-bottom: 0rem !important;
                     }
 
                     .hero-content {
                         transform: scale(1) !important;
-                        margin-top: 50vh !important; /* Ajustando para o botão subir e o rosto continuar visível */
+                        margin-top: 35vh !important; /* Ajustando para o botão subir e o rosto continuar visível */
                         margin-left: 0 !important;
                         align-items: center !important;
                         text-align: center !important;
@@ -225,7 +236,7 @@ export const Hero = () => {
                     
                     h1 {
                         /* Fonte um pouco menor para economizar espaço vertical */
-                        font-size: clamp(1.1rem, 5vw, 1.4rem) !important; 
+                        font-size: clamp(1.3rem, 6vw, 1.6rem) !important; 
                         line-height: 1.25 !important;
                         margin-bottom: 1rem !important;
                         text-shadow: 0 4px 16px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,1) !important;
@@ -248,7 +259,7 @@ export const Hero = () => {
                 bottom: 0,
                 left: 0,
                 width: '100%',
-                height: '150px',
+                height: '100px',
                 background: 'linear-gradient(to top, #000 10%, transparent 100%)',
                 zIndex: 20,
                 pointerEvents: 'none'

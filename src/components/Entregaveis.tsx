@@ -67,7 +67,7 @@ export const Entregaveis: React.FC = () => {
     return (
         <section
             id="entregaveis-section"
-            className="relative w-full py-10 sm:py-28 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
+            className="relative w-full py-4 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
             style={{ backgroundColor: '#000' }}
             onMouseMove={handleMouseMove}
         >
@@ -87,7 +87,7 @@ export const Entregaveis: React.FC = () => {
                 }}
             />
 
-            <div className="max-w-[1100px] w-full flex flex-col items-center gap-16 relative z-10">
+            <div className="max-w-[1100px] w-full flex flex-col items-center gap-8 sm:gap-10 relative z-10">
 
                 {/* Section Header */}
                 <div className="flex flex-col items-center gap-4 text-center scroll-top delay-200">
@@ -128,18 +128,29 @@ export const Entregaveis: React.FC = () => {
                                     }}
                                 />
 
-                                {/* Number + Icon Row */}
+                                {/* STP Label + Icon Row */}
                                 <div className="flex items-center justify-between">
-
-                                    <div
-                                        className="w-12 h-12 rounded-xl flex items-center justify-center"
-                                        style={{
-                                            backgroundColor: isHovered ? `${ACCENT}15` : `${ACCENT}08`,
-                                            border: `1px solid ${isHovered ? `${ACCENT}30` : `${ACCENT}10`}`,
-                                            transition: 'all 0.4s ease',
-                                        }}
-                                    >
-                                        {item.icon}
+                                    <div className="flex items-center gap-4">
+                                        <div
+                                            className="w-12 h-12 rounded-xl flex items-center justify-center"
+                                            style={{
+                                                backgroundColor: isHovered ? `${ACCENT}15` : `${ACCENT}08`,
+                                                border: `1px solid ${isHovered ? `${ACCENT}30` : `${ACCENT}10`}`,
+                                                transition: 'all 0.4s ease',
+                                            }}
+                                        >
+                                            {item.icon}
+                                        </div>
+                                        <span
+                                            className="text-xs font-bold tracking-[0.2em] uppercase"
+                                            style={{
+                                                color: isHovered ? ACCENT : 'rgba(255,255,255,0.25)',
+                                                fontFamily: 'var(--title-font)',
+                                                transition: 'color 0.4s ease',
+                                            }}
+                                        >
+                                            STP {item.number}
+                                        </span>
                                     </div>
                                 </div>
 

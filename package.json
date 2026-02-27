@@ -7,10 +7,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:ghpages": "set DEPLOY_TARGET=ghpages&& tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build:ghpages",
+    "deploy": "gh-pages -d dist",
+    "deploy:vercel": "npm run build && npx vercel --prod"
   },
   "dependencies": {
     "gsap": "^3.14.2",

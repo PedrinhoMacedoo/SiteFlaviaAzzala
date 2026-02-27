@@ -6,52 +6,47 @@ interface SovereignButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElem
 }
 
 export const SovereignButton: React.FC<SovereignButtonProps> = ({ children, className = '', ...props }) => {
+    // Retira o emoji 🔘 que eu usava como ícone antes para substituir pelo ponto vermelho real
+    const stringChildren = typeof children === 'string' ? children.replace('🔘', '').trim() : children;
+
     return (
         <button
-            className={`group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_60px_-15px_rgba(245,208,96,0.5)] focus:outline-none text-xs sm:text-sm font-semibold text-white tracking-[0.15em] sm:tracking-[0.2em] rounded-full py-4 px-6 sm:py-5 sm:px-12 relative items-center justify-center border border-white/5 ${className}`}
+            className={`group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_50px_rgba(229,9,20,0.8)] focus:outline-none text-[11px] sm:text-xs md:text-sm font-bold text-white tracking-widest sm:tracking-[0.1em] rounded-[40px] py-4 px-6 sm:py-5 sm:px-12 relative items-center justify-center border border-red-500/50 ${className}`}
+            style={{
+                background: 'linear-gradient(90deg, #5a0000 0%, #e60000 50%, #5a0000 100%)',
+                boxShadow: '0 0 30px rgba(229,9,20,0.3)',
+            }}
             {...props}
         >
-            {/* Borda Animada (Feixe Dourado Vibrante) */}
-            <div className="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1.5px]">
-                {/* Gradiente Dourado (#d4a017 para #f5d060) */}
-                <div
-                    className="absolute inset-[-250%] bg-[conic-gradient(from_0deg,transparent_0_200deg,#d4a017_280deg,#f5d060_320deg,transparent_360deg)]"
-                    style={{ animation: 'beam-spin 2s linear infinite' }}
-                ></div>
-                {/* Fundo para criar o recorte da borda */}
-                <div className="absolute inset-[1px] rounded-full bg-black"></div>
-            </div>
+            {/* Grain Texture para dar a sensação do botão físico (opcional) */}
+            <div
+                className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none"
+                style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                }}
+            />
 
-            {/* Corpo do Botão e Efeitos de Luz */}
-            <div className="-z-10 overflow-hidden bg-black rounded-full absolute inset-[1.5px]">
-                {/* Esfumaçado/Radial Branco Central */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_70%)]"></div>
-
-                {/* Padrão de Pontos (Sutil no fundo escuro) */}
+            <div className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+                {/* Red Glowing Circle Indicator */}
                 <div
-                    className="opacity-20 absolute inset-0"
+                    className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff3333] shrink-0"
                     style={{
-                        backgroundImage: 'radial-gradient(rgba(255,255,255,0.3) 1px, transparent 1px)',
-                        backgroundSize: '14px 14px',
-                        animation: 'dots-move 12s linear infinite'
+                        boxShadow: '0 0 10px #ff3333, inset 0 0 4px white'
                     }}
-                ></div>
+                />
 
-                {/* Glow Branco Lateral no Hover */}
-                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
+                {/* Conteúdo do Texto */}
+                <span className="text-white whitespace-normal sm:whitespace-nowrap leading-tight sm:leading-none" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                    {stringChildren}
+                </span>
 
-            {/* Conteúdo */}
-            <span className="relative z-10 text-white/90 transition-all duration-300 group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-normal sm:whitespace-nowrap px-1 sm:px-2 text-center leading-relaxed">
-                {children}
-            </span>
-
-            {/* Seta Branca com Animação Corrigida */}
-            <div className="relative z-10 ml-3 transition-all duration-300 animate-indicate shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                </svg>
+                {/* Seta Branca */}
+                <div className="ml-1 sm:ml-2 transition-transform duration-300 group-hover:translate-x-1.5 shrink-0 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </div>
             </div>
         </button>
     );

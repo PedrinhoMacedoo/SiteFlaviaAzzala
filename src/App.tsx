@@ -1,7 +1,6 @@
 import React, { useEffect, Suspense } from 'react';
 import { Hero } from './components/Hero';
 import { SectionDivider } from './components/SectionDivider';
-import { LazySection } from './components/LazySection';
 
 // Lazy load components that are below the fold
 const MarketContrast = React.lazy(() => import('./components/MarketContrast').then(module => ({ default: module.MarketContrast })));
@@ -22,9 +21,6 @@ function App() {
         const elementoTop = elemento.getBoundingClientRect().top;
         if (elementoTop < alturaJanela * 0.85) {
           elemento.classList.add("ativo7");
-        } else {
-          // Keep it visible once animated for better stability
-          // elemento.classList.remove("ativo7");
         }
       });
     }
@@ -51,57 +47,43 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black flex flex-col gap-0 w-full overflow-x-hidden">
       <Hero />
       <SectionDivider />
 
-      <LazySection minHeight="600px" rootMargin="200px 0px">
-        <Suspense fallback={<div className="h-[600px]" />}>
-          <MarketContrast />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <ParaQuem />
+      </Suspense>
       <SectionDivider />
 
-      <LazySection minHeight="600px" rootMargin="200px 0px">
-        <Suspense fallback={<div className="h-[600px]" />}>
-          <ParaQuem />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <MarketContrast />
+      </Suspense>
       <SectionDivider />
 
-      <LazySection minHeight="800px" rootMargin="300px 0px">
-        <Suspense fallback={<div className="h-[800px]" />}>
-          <NutraCarousel />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <NutraCarousel />
+      </Suspense>
       <SectionDivider />
 
-      <LazySection minHeight="800px" rootMargin="300px 0px">
-        <Suspense fallback={<div className="h-[800px]" />}>
-          <ProvasSociais />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <ProvasSociais />
+      </Suspense>
       <SectionDivider />
 
-      <LazySection minHeight="600px" rootMargin="200px 0px">
-        <Suspense fallback={<div className="h-[600px]" />}>
-          <Entregaveis />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <Entregaveis />
+      </Suspense>
       <SectionDivider />
 
-      <LazySection minHeight="600px" rootMargin="200px 0px">
-        <Suspense fallback={<div className="h-[600px]" />}>
-          <Autoridade />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <Autoridade />
+      </Suspense>
       <SectionDivider />
 
-      <LazySection minHeight="200px" rootMargin="100px 0px">
-        <Suspense fallback={<div className="h-[200px]" />}>
-          <Rodape />
-        </Suspense>
-      </LazySection>
+      <Suspense fallback={null}>
+        <Rodape />
+      </Suspense>
     </div>
   );
 }

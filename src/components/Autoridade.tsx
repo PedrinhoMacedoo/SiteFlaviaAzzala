@@ -1,6 +1,6 @@
 import React from 'react';
 import { SovereignButton } from './SovereignButton';
-import flaviaImg from '../assets/3eeda1ff02e6cf2c4adbd6efaf62e9b79bd59771.png';
+import flaviaImg from '../assets/flavia-car.webp';
 
 const ACCENT = '#F5D060';
 
@@ -15,7 +15,7 @@ export const Autoridade: React.FC = () => {
     return (
         <section
             id="autoridade-section"
-            className="relative w-full py-10 sm:py-24 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
+            className="relative w-full py-4 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
             style={{
                 backgroundColor: '#000',
             }}
@@ -30,24 +30,30 @@ export const Autoridade: React.FC = () => {
                 style={{ backgroundColor: ACCENT }}
             />
 
-            <div className="max-w-[1100px] w-full flex flex-col items-center gap-14 relative z-10">
+            <div className="max-w-[1100px] w-full flex flex-col items-center gap-8 sm:gap-14 relative z-10">
 
-                {/* Section Tag */}
-                <div className="flex flex-col items-center gap-5 text-center scroll-top delay-200">
-                    <div className="inline-flex items-center self-center px-4 py-2 rounded-full border border-white/10 bg-white/5">
+                {/* Section Tag & Name */}
+                <div className="flex flex-col items-center gap-2 text-center scroll-top delay-200">
+                    <div className="inline-flex items-center self-center px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-2">
                         <span className="w-2 h-2 rounded-full mr-2" style={{ backgroundColor: ACCENT }} />
                         <span
                             className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase"
                             style={{ fontFamily: 'var(--subtitle-font)' }}
                         >
-                            QUEM FAZ
+                            ESTRATEGISTA DIGITAL
                         </span>
                     </div>
+                    <h2
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-black text-white leading-none tracking-tighter mt-1"
+                        style={{ fontFamily: 'var(--title-font)' }}
+                    >
+                        Flavia Zaala
+                    </h2>
                 </div>
 
                 {/* Main Content — Photo + Text */}
                 <div
-                    className="w-full rounded-3xl p-8 sm:p-12 md:p-16 scroll-top delay-200 relative overflow-hidden"
+                    className="w-full rounded-3xl p-6 sm:p-12 md:p-16 scroll-top delay-200 relative overflow-hidden"
                     style={{
                         backgroundColor: '#080808',
                         border: '1px solid rgba(255,255,255,0.06)',
@@ -61,12 +67,12 @@ export const Autoridade: React.FC = () => {
                         }}
                     />
 
-                    <div className="flex flex-col md:flex-row gap-10 md:gap-14 items-center md:items-start relative z-10">
+                    <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-center md:items-start relative z-10">
 
                         {/* Left: Photo */}
                         <div className="flex-shrink-0 flex flex-col items-center gap-4 w-full md:w-auto">
                             <div
-                                className="relative rounded-2xl overflow-hidden"
+                                className="relative rounded-2xl overflow-hidden w-full max-w-[340px] md:max-w-none md:w-[280px]"
                                 style={{
                                     border: `2px solid ${ACCENT}30`,
                                     boxShadow: `0 0 40px ${ACCENT}10, 0 20px 60px rgba(0,0,0,0.5)`,
@@ -75,7 +81,7 @@ export const Autoridade: React.FC = () => {
                                 <img
                                     src={flaviaImg}
                                     alt="Flavia Zaala"
-                                    className="w-[200px] h-[260px] sm:w-[240px] sm:h-[310px] md:w-[280px] md:h-[360px] object-cover"
+                                    className="w-full h-auto aspect-[4/5] object-cover sm:h-[310px] md:w-[280px] md:h-[360px]"
                                 />
                                 {/* Gradient overlay at bottom */}
                                 <div
@@ -84,26 +90,6 @@ export const Autoridade: React.FC = () => {
                                         background: 'linear-gradient(to top, #080808, transparent)',
                                     }}
                                 />
-                            </div>
-
-                            {/* Name label under photo */}
-                            <div className="text-center">
-                                <p
-                                    className="text-base sm:text-lg font-bold text-white"
-                                    style={{ fontFamily: 'var(--title-font)' }}
-                                >
-                                    Flavia Zaala
-                                </p>
-                                <p
-                                    className="text-xs sm:text-sm mt-1"
-                                    style={{
-                                        fontFamily: 'var(--subtitle-font)',
-                                        color: ACCENT,
-                                        opacity: 0.8,
-                                    }}
-                                >
-                                    Estrategista Digital
-                                </p>
                             </div>
                         </div>
 

@@ -51,7 +51,7 @@ html::before {
   --title-font: 'Sora', sans-serif;
   --subtitle-font: 'Lexend', sans-serif;
 
-  --mobile-title-size: clamp(1.1rem, 2.5vw, 2rem);
+  --mobile-title-size: clamp(1.45rem, 5vw, 2.2rem);
   --mobile-title-line-height: 1.15;
   --mobile-subtitle-size: clamp(0.9rem, 2vw, 1.1rem);
   --mobile-subtitle-line-height: 1.45;

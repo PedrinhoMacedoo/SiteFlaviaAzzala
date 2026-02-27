@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SovereignButton } from './SovereignButton';
+import { CheckCircle2 } from 'lucide-react';
 
 const ACCENT = '#F5D060';
 const BG = '#000000';
@@ -7,22 +8,20 @@ const CARD_BG = '#080808';
 
 export const ParaQuem: React.FC = () => {
     const items = [
-        { bold: 'Infoprodutores e Afiliados', text: 'Pessoas que já rodaram infoproduto ou afiliado no Brasil, e travaram na escala' },
-        { bold: 'Ticket Baixo', text: 'Quem já vende na internet, mas percebeu que ticket baixo exige volume absurdo' },
-        { bold: 'Alta Renda', text: 'Profissionais de alta renda como médicos, dentistas, corretores, empresários e executivos…' },
-        { bold: 'Transição de CLT', text: 'Pessoas que trabalham na CLT e não aceitam mais vender sua hora por um valor fixo enquanto veem o custo de vida subir e o poder de compra cair' },
-        { bold: 'Moeda Forte', text: 'Quem quer sair da faixa dos R$10k–R$30k/mês e jogar em moeda forte' },
-        { bold: 'Dropshipping', text: 'Operadores de DropShipping que já entenderam tráfego, mas estão cansados de margem espremida, bloqueios e logística' },
-        { bold: 'Low Profile', text: 'Quem quer operar no digital sem precisar aparecer, criar conteúdo ou depender de audiência' },
-        { bold: 'Gestores de Tráfego', text: 'Gestores de tráfego local que já sabem gerar vendas para outros negócios, mas querem estruturar uma operação própria com margem real' }
+        { text: 'Se você já rodou infoproduto ou mercado de afiliados no Brasil, e percebeu que escalabilidade por lá tem um teto claro;' },
+        { text: 'Se você já vende na internet, mas entendeu que ticket baixo e moedas fracas exigem um volume de tráfego que, hoje, mata sua margem;' },
+        { text: 'Para profissionais de alta renda que cansaram de depender de indicação ou vender o próprio tempo, e buscam uma operação em dólar escalável;' },
+        { text: 'Se você ainda atua no mercado corporativo ou CLT, mas não aceita mais vender sua hora enquanto vê o custo de vida subir e o seu poder de compra cair;' },
+        { text: 'Se você já ganha R$10k-R$30k mês, mas entende que para construir um patrimônio inabalável, precisa jogar em moeda forte;' },
+        { text: 'Se você já fez Dropshipping, tem o domínio tático de comprar anúncios, mas não aguenta mais lidar com margens apertadas e problemas de logística;' },
+        { text: 'Se você busca operar forte no digital, construir uma empresa de valor, mas prefere se manter como bastidor, sem precisar criar conteúdo ou depender de imagem;' },
+        { text: 'E para Gestores de Tráfego que estão cansados de dar excelentes resultados para os outros enquanto limitam o próprio ganho no processo, buscando ter um negócio próprio.' },
     ];
-
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
         <section
             id="para-quem-section"
-            className="relative w-full py-10 sm:py-28 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
+            className="relative w-full py-4 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
             style={{ backgroundColor: BG }}
         >
             {/* Background glow */}
@@ -31,7 +30,7 @@ export const ParaQuem: React.FC = () => {
                 style={{ backgroundColor: ACCENT }}
             />
 
-            <div className="max-w-[1100px] w-full flex flex-col items-center gap-12 relative z-10">
+            <div className="max-w-[1100px] w-full flex flex-col items-center gap-6 relative z-10">
 
                 {/* Section Header - Centered & Responsive Title */}
                 <div className="flex flex-col items-center text-center w-full">
@@ -51,7 +50,7 @@ export const ParaQuem: React.FC = () => {
                         }
                     `}</style>
                     <h2
-                        className="text-[length:var(--mobile-title-size)] sm:text-[length:var(--desktop-title-size)] font-bold text-white leading-tight uppercase mb-4"
+                        className="text-[length:var(--mobile-title-size)] sm:text-[length:var(--desktop-title-size)] font-bold text-white leading-tight uppercase mb-0 sm:mb-2"
                         style={{
                             fontFamily: 'var(--title-font)'
                         }}
@@ -59,7 +58,7 @@ export const ParaQuem: React.FC = () => {
                         <span className="animate-flame">🔥</span> Para quem é indicada essa <span style={{ color: ACCENT }}>reunião estratégica</span>?
                     </h2>
                     <p
-                        className="text-[#a0a8b8] text-lg sm:text-xl font-medium mt-2"
+                        className="text-[#a0a8b8] text-lg sm:text-xl font-medium mt-0 sm:mt-2"
                         style={{ fontFamily: 'var(--subtitle-font)' }}
                     >
                         Essa análise é para:
@@ -86,65 +85,30 @@ export const ParaQuem: React.FC = () => {
                                 }}
                             />
 
-                            {/* Content Grid */}
-                            <div className="w-full relative z-10 p-5 sm:p-10 mb-2">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                                    {items.map((item, i) => {
-                                        const isActive = activeIndex === i;
-                                        return (
-                                            <div key={i} className="flex flex-col w-full">
-                                                <button
-                                                    onClick={() => setActiveIndex(isActive ? null : i)}
-                                                    className="relative w-full px-5 py-5 rounded-xl text-sm sm:text-[15px] font-semibold transition-all duration-400 cursor-pointer select-none text-left flex items-center"
-                                                    style={{
-                                                        fontFamily: 'var(--subtitle-font)',
-                                                        color: isActive ? '#000' : '#fff',
-                                                        backgroundColor: isActive ? ACCENT : 'rgba(255,255,255,0.04)',
-                                                        border: `1px solid ${isActive ? ACCENT : 'rgba(255,255,255,0.08)'}`,
-                                                        boxShadow: isActive
-                                                            ? `0 10px 25px ${ACCENT}25, 0 4px 12px rgba(0,0,0,0.4)`
-                                                            : '0 2px 8px rgba(0,0,0,0.1)',
-                                                        transform: isActive ? 'scale(1.02)' : 'scale(1)',
-                                                        zIndex: isActive ? 10 : 1,
-                                                    }}
-                                                >
-                                                    <span
-                                                        className="inline-block w-2.5 h-2.5 rounded-full mr-4 transition-all duration-300 flex-shrink-0"
-                                                        style={{
-                                                            backgroundColor: isActive ? '#000' : ACCENT,
-                                                            opacity: isActive ? 0.7 : 0.5,
-                                                        }}
-                                                    />
-                                                    {item.bold}
-                                                </button>
-
-                                                {/* Expandable Text directly below card */}
-                                                <div
-                                                    className={`transition-all duration-500 overflow-hidden ${isActive ? 'opacity-100 mt-3' : 'opacity-0 h-0 mt-0'}`}
-                                                    style={{
-                                                        maxHeight: isActive ? '200px' : '0px',
-                                                    }}
-                                                >
-                                                    <div
-                                                        className="px-5 py-4 rounded-xl"
-                                                        style={{
-                                                            backgroundColor: 'rgba(255,255,255,0.03)',
-                                                            border: `1px solid rgba(255,255,255,0.05)`,
-                                                            transform: isActive ? 'translateY(0)' : 'translateY(-10px)',
-                                                            transition: 'transform 0.5s ease-out'
-                                                        }}
-                                                    >
-                                                        <p
-                                                            className="text-[#a0a8b8] text-sm sm:text-[15px] leading-relaxed"
-                                                            style={{ fontFamily: 'var(--subtitle-font)' }}
-                                                        >
-                                                            {item.text}
-                                                        </p>
-                                                    </div>
+                            {/* Content List */}
+                            <div className="w-full relative z-10 pt-4 pb-2 px-4 sm:pt-6 sm:pb-3 sm:px-6 mb-0">
+                                <div className="flex flex-col gap-2">
+                                    {items.map((item, i) => (
+                                        <div
+                                            key={i}
+                                            className="flex flex-row items-start gap-3 pt-4 pb-1 px-3 sm:pt-5 sm:pb-2 sm:px-4 rounded-lg border border-white/5 transition-colors duration-300 hover:border-white/10"
+                                            style={{
+                                                backgroundColor: 'rgba(255,255,255,0.03)',
+                                            }}
+                                        >
+                                            <div className="flex-shrink-0 mt-0.5">
+                                                <div className="flex items-center justify-center w-6 h-6 rounded-full" style={{ color: ACCENT }}>
+                                                    <CheckCircle2 size={24} strokeWidth={1.5} />
                                                 </div>
                                             </div>
-                                        );
-                                    })}
+                                            <p
+                                                className="text-[#e2e8f0] text-[15px] sm:text-base leading-snug mb-0"
+                                                style={{ fontFamily: 'var(--subtitle-font)' }}
+                                            >
+                                                {item.text}
+                                            </p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -152,7 +116,7 @@ export const ParaQuem: React.FC = () => {
                 </div>
 
                 {/* Footer CTA */}
-                <div className="flex flex-col items-center gap-8 text-center mt-4">
+                <div className="flex flex-col items-center gap-6 text-center mt-0 sm:mt-2">
                     <p
                         className="text-[#a0a8b8] text-base sm:text-lg max-w-3xl leading-relaxed italic"
                         style={{ fontFamily: 'var(--subtitle-font)' }}

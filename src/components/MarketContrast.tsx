@@ -394,8 +394,8 @@ export const MarketContrast = () => {
             className="market-pad"
             style={{
                 backgroundColor: COLORS.bg,
-                paddingTop: '8rem',
-                paddingBottom: '8rem',
+                paddingTop: '1.5rem',
+                paddingBottom: '1.5rem',
                 paddingLeft: '1rem',
                 paddingRight: '1rem',
                 position: 'relative',
@@ -485,7 +485,7 @@ export const MarketContrast = () => {
             </div>
 
             {/* Footer Statement */}
-            <div style={{ position: 'relative', zIndex: 10, marginTop: '5rem', textAlign: 'center' }}>
+            <div style={{ position: 'relative', zIndex: 10, marginTop: '2rem', marginBottom: '2rem', textAlign: 'center' }}>
                 <p style={{
                     color: 'rgba(255,255,255,0.7)',
                     fontFamily: 'var(--subtitle-font)',

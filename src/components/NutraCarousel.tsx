@@ -49,7 +49,7 @@ export const NutraCarousel: React.FC = () => {
     return (
         <section
             id="nutra-section"
-            className="relative w-full py-12 sm:py-32 px-4 sm:px-8 flex flex-col items-center justify-center overflow-hidden z-20"
+            className="relative w-full py-4 px-4 sm:px-8 flex flex-col items-center justify-center overflow-hidden z-20"
             style={{ backgroundColor: '#000' }}
         >
             {/* Mesh Gradients for background depth */}
@@ -63,7 +63,7 @@ export const NutraCarousel: React.FC = () => {
             />
 
             {/* HEADER */}
-            <div className="flex flex-col items-center gap-6 text-center mb-16 sm:mb-24 relative z-10">
+            <div className="flex flex-col items-center gap-6 text-center mb-8 sm:mb-10 relative z-10">
                 <div className="inline-flex items-center px-4 py-2 rounded-full border border-white/5 bg-white/5 backdrop-blur-md shadow-2xl">
                     <span className="text-white/80 text-[10px] sm:text-[0.8rem] font-bold tracking-[0.1em] uppercase" style={{ fontFamily: 'var(--subtitle-font)' }}>
                         — POR QUE NUTRA É A CATEGORIA IDEAL NOS EUA
@@ -80,14 +80,32 @@ export const NutraCarousel: React.FC = () => {
                 </h2>
 
                 {/* Frase de Impacto Principal - Hierarquia Clara */}
-                <div className="mt-6 flex flex-col items-center gap-1 max-w-3xl">
-                    <p className="text-white text-xl sm:text-2xl font-black tracking-tighter leading-tight uppercase" style={{ fontFamily: 'var(--title-font)' }}>
+                <style>{`
+                    .impact-text-white {
+                        font-family: var(--title-font) !important;
+                        font-size: clamp(1.25rem, 3.5vw, 2.25rem) !important;
+                        line-height: 1.1 !important;
+                        text-align: center !important;
+                        margin-bottom: 0px !important;
+                        display: block !important;
+                    }
+                    .impact-text-gold {
+                        font-family: var(--title-font) !important;
+                        font-size: clamp(1.25rem, 3.5vw, 2.25rem) !important;
+                        line-height: 1.1 !important;
+                        text-align: center !important;
+                        text-shadow: 0 4px 16px rgba(245,208,96,0.3) !important;
+                        display: block !important;
+                    }
+                `}</style>
+                <div className="mt-4 sm:mt-6 flex flex-col items-center gap-0 max-w-5xl">
+                    <p className="text-white font-black tracking-tighter uppercase impact-text-white">
                         Não é apenas vender em dólar.
                     </p>
-                    <p className="text-[#F5D060] text-xl sm:text-2xl font-black tracking-tighter uppercase" style={{ fontFamily: 'var(--title-font)', textShadow: '0 0 20px rgba(245,208,96,0.2)' }}>
-                        É vender dentro da <span className="underline decoration-white/20 underline-offset-8">categoria certa</span>.
+                    <p className="text-[#F5D060] font-black tracking-tighter uppercase mt-0 sm:mt-1 impact-text-gold">
+                        É vender dentro da <span className="underline decoration-[#F5D060]/50 underline-offset-[12px]">categoria certa</span>.
                     </p>
-                    <p className="text-[#a0a8b8] text-base sm:text-lg font-light mt-6 opacity-80 uppercase tracking-widest" style={{ fontFamily: 'var(--subtitle-font)' }}>
+                    <p className="text-[#a0a8b8] text-base sm:text-lg font-light mt-4 sm:mt-5 opacity-90 uppercase tracking-widest text-center" style={{ fontFamily: 'var(--subtitle-font)' }}>
                         Porque ela permite uma estrutura agressiva e lucrativa desde o primeiro dia:
                     </p>
                 </div>
@@ -131,10 +149,7 @@ export const NutraCarousel: React.FC = () => {
                             </div>
 
                             <div className="flex flex-col gap-3 flex-1 overflow-hidden relative">
-                                <div className="flex items-center gap-4 mb-2">
-                                    <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] opacity-40 uppercase whitespace-nowrap" style={{ color: ACCENT }}>STP-{step.number}</span>
-                                    <div className="h-px w-8 sm:w-12 bg-white/5" />
-                                </div>
+
                                 <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight break-words" style={{ fontFamily: 'var(--title-font)' }}>
                                     {step.title}
                                 </h3>
@@ -144,7 +159,7 @@ export const NutraCarousel: React.FC = () => {
                             </div>
 
                             {/* Ghost Number (ajustado para ficar discreto no grid) */}
-                            <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-black opacity-[0.03] pointer-events-none select-none tracking-tighter" style={{ fontFamily: 'var(--title-font)', color: ACCENT }}>
+                            <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-black opacity-10 pointer-events-none select-none tracking-tighter" style={{ fontFamily: 'var(--title-font)', color: ACCENT }}>
                                 {step.number}
                             </span>
                         </div>

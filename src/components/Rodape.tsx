@@ -5,10 +5,9 @@ export const Rodape: React.FC = () => {
 
     return (
         <footer
-            className="w-full flex justify-center items-center relative z-20"
+            className="w-full flex justify-center items-center relative z-20 py-8"
             style={{
                 backgroundColor: '#000000',
-                padding: '30px 24px', // 30px no Desktop, Elementor usa um pouco mais no mobile às vezes, mas 30/24 é um bom padrão
                 borderTop: '1px solid rgba(255,255,255,0.05)',
             }}
         >
