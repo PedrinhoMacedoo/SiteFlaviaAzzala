@@ -9,7 +9,7 @@ export default defineConfig({
     react()
   ],
   // Use '/' for Vercel, '/SiteFlaviaAzzala/' for GitHub Pages
-  base: process.env.DEPLOY_TARGET === 'ghpages' ? '/SiteFlaviaAzzala/' : '/',
+  base: '/mapadodolar/',
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
