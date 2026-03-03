@@ -4,24 +4,23 @@ import { CheckCircle2 } from 'lucide-react';
 
 const ACCENT = '#F5D060';
 const BG = '#000000';
-const CARD_BG = '#080808';
 
 export const ParaQuem: React.FC = () => {
     const items = [
-        { text: 'Se você já rodou infoproduto ou mercado de afiliados no Brasil, e percebeu que escalabilidade por lá tem um teto claro;' },
-        { text: 'Se você já vende na internet, mas entendeu que ticket baixo e moedas fracas exigem um volume de tráfego que, hoje, mata sua margem;' },
-        { text: 'Para profissionais de alta renda que cansaram de depender de indicação ou vender o próprio tempo, e buscam uma operação em dólar escalável;' },
-        { text: 'Se você ainda atua no mercado corporativo ou CLT, mas não aceita mais vender sua hora enquanto vê o custo de vida subir e o seu poder de compra cair;' },
-        { text: 'Se você já ganha R$10k-R$30k mês, mas entende que para construir um patrimônio inabalável, precisa jogar em moeda forte;' },
-        { text: 'Se você já fez Dropshipping, tem o domínio tático de comprar anúncios, mas não aguenta mais lidar com margens apertadas e problemas de logística;' },
-        { text: 'Se você busca operar forte no digital, construir uma empresa de valor, mas prefere se manter como bastidor, sem precisar criar conteúdo ou depender de imagem;' },
-        { text: 'E para Gestores de Tráfego que estão cansados de dar excelentes resultados para os outros enquanto limitam o próprio ganho no processo, buscando ter um negócio próprio.' },
+        { text: 'Pessoas que já rodaram infoproduto ou afiliado no Brasil, e travaram na escala' },
+        { text: 'Quem já vende na internet, mas percebeu que ticket baixo exige volume absurdo' },
+        { text: 'Profissionais de alta renda como médicos, dentistas, corretores, empresários e executivos…' },
+        { text: 'Pessoas que trabalham na CLT e não aceitam mais vender sua hora por um valor fixo enquanto veem o custo de vida subir e o poder de compra cair' },
+        { text: 'Quem quer sair da faixa dos R$10k–R$30k/mês e jogar em moeda forte' },
+        { text: 'Operadores de DropShipping que já entenderam tráfego, mas estão cansados de margem espremida, bloqueios e logística' },
+        { text: 'Quem quer operar no digital sem precisar aparecer, criar conteúdo ou depender de audiência' },
+        { text: 'Gestores de tráfego local que já sabem gerar vendas para outros negócios, mas querem estruturar uma operação própria com margem real' },
     ];
 
     return (
         <section
             id="para-quem-section"
-            className="relative w-full py-4 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
+            className="relative w-full py-[var(--section-py-mobile)] md:py-[var(--section-py)] px-4 sm:px-8 flex justify-center overflow-hidden z-20"
             style={{ backgroundColor: BG }}
         >
             {/* Background glow */}
@@ -50,69 +49,89 @@ export const ParaQuem: React.FC = () => {
                         }
                     `}</style>
                     <h2
+                        id="para-quem-title"
                         className="text-[length:var(--mobile-title-size)] sm:text-[length:var(--desktop-title-size)] font-bold text-white leading-tight uppercase mb-0 sm:mb-2"
-                        style={{
-                            fontFamily: 'var(--title-font)'
-                        }}
+                        style={{ fontFamily: 'var(--title-font)' }}
                     >
-                        <span className="animate-flame">🔥</span> Para quem é indicada essa <span style={{ color: ACCENT }}>reunião estratégica</span>?
+                        <span className="line1"><span className="animate-flame">🔥</span> Para quem é indicada essa </span>
+                        <span className="line2" style={{ color: ACCENT }}>reunião estratégica?</span>
                     </h2>
+                    <style>{`
+                        @media (max-width: 768px) {
+                            #para-quem-title {
+                                font-size: clamp(1rem, 5.25vw, 2.5rem) !important;
+                                display: flex !important;
+                                flex-direction: column !important;
+                                align-items: center !important;
+                                width: 100% !important;
+                                line-height: 1.2 !important;
+                                letter-spacing: 0.02em !important;
+                                padding: 0 10px !important;
+                            }
+                            #para-quem-title .line1 {
+                                display: block !important;
+                                white-space: nowrap !important;
+                            }
+                            #para-quem-title .line2 {
+                                display: block !important;
+                                white-space: nowrap !important;
+                            }
+                        }
+                    `}</style>
                     <p
-                        className="text-[#a0a8b8] text-lg sm:text-xl font-medium mt-0 sm:mt-2"
-                        style={{ fontFamily: 'var(--subtitle-font)' }}
+                        id="target-essa-analise"
+                        className="font-bold mt-4 mb-4 text-[#a0a8b8]"
+                        style={{ fontFamily: 'var(--subtitle-font)', fontSize: '26px', lineHeight: '1.2' }}
                     >
                         Essa análise é para:
                     </p>
+                    <style>{`
+                        @media (max-width: 768px) {
+                            #target-essa-analise {
+                                font-size: 26px !important;
+                                font-weight: 700 !important;
+                                display: block !important;
+                                color: #a0a8b8 !important;
+                            }
+                        }
+                    `}</style>
                 </div>
 
-                {/* Card Container */}
-                <div className="w-full max-w-[1000px]">
-                    <div className="group relative" style={{ perspective: '1200px', cursor: 'default' }}>
+                {/* Grid Container for Desktop / Stack for Mobile */}
+                <div className="w-full max-w-[1200px] grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    {items.map((item, i) => (
                         <div
-                            className="relative w-full flex flex-col items-center overflow-hidden transition-all duration-500"
+                            key={i}
+                            className="group relative flex flex-row items-center gap-4 p-5 sm:p-6 rounded-2xl transition-all duration-500 hover:scale-[1.02] cursor-default"
                             style={{
-                                backgroundColor: CARD_BG,
-                                border: '1px solid rgba(255, 255, 255, 0.08)',
-                                borderRadius: '1.5rem',
-                                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
+                                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                                backdropFilter: 'blur(10px)',
+                                border: '1px solid rgba(255, 255, 255, 0.05)',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
                             }}
                         >
-                            {/* Ambient light effect */}
-                            <div
-                                className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-44 pointer-events-none"
+                            {/* Hover Shine Effect */}
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl"
                                 style={{
-                                    background: `radial-gradient(circle at 50% 0%, ${ACCENT}08, transparent 70%)`,
+                                    background: `linear-gradient(135deg, ${ACCENT}08 0%, transparent 100%)`,
+                                    border: `1px solid ${ACCENT}20`,
                                 }}
                             />
 
-                            {/* Content List */}
-                            <div className="w-full relative z-10 pt-4 pb-2 px-4 sm:pt-6 sm:pb-3 sm:px-6 mb-0">
-                                <div className="flex flex-col gap-2">
-                                    {items.map((item, i) => (
-                                        <div
-                                            key={i}
-                                            className="flex flex-row items-start gap-3 pt-4 pb-1 px-3 sm:pt-5 sm:pb-2 sm:px-4 rounded-lg border border-white/5 transition-colors duration-300 hover:border-white/10"
-                                            style={{
-                                                backgroundColor: 'rgba(255,255,255,0.03)',
-                                            }}
-                                        >
-                                            <div className="flex-shrink-0 mt-0.5">
-                                                <div className="flex items-center justify-center w-6 h-6 rounded-full" style={{ color: ACCENT }}>
-                                                    <CheckCircle2 size={24} strokeWidth={1.5} />
-                                                </div>
-                                            </div>
-                                            <p
-                                                className="text-[#e2e8f0] text-[15px] sm:text-base leading-snug mb-0"
-                                                style={{ fontFamily: 'var(--subtitle-font)' }}
-                                            >
-                                                {item.text}
-                                            </p>
-                                        </div>
-                                    ))}
+                            <div className="flex-shrink-0 relative z-10">
+                                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/[0.03] border border-white/5 transition-all duration-500 group-hover:border-[#F5D060]/30 group-hover:bg-[#F5D060]/10" style={{ color: ACCENT }}>
+                                    <CheckCircle2 size={24} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
                                 </div>
                             </div>
+
+                            <p
+                                className="text-[#e2e8f0] text-sm sm:text-[15px] leading-snug relative z-10 font-medium opa80 group-hover:opacity-100 transition-opacity"
+                                style={{ fontFamily: 'var(--subtitle-font)' }}
+                            >
+                                {item.text}
+                            </p>
                         </div>
-                    </div>
+                    ))}
                 </div>
 
                 {/* Footer CTA */}
@@ -121,7 +140,7 @@ export const ParaQuem: React.FC = () => {
                         className="text-[#a0a8b8] text-base sm:text-lg max-w-3xl leading-relaxed italic"
                         style={{ fontFamily: 'var(--subtitle-font)' }}
                     >
-                        "Se você já entendeu que o jogo não é trabalhar mais — é escolher o mercado certo — <span className="text-white not-italic font-bold">essa reunião pode ser o próximo passo.</span>"
+                        "Se você já entendeu que o jogo não é trabalhar mais — é escolher o mercado certo — <span className="text-white not-italic font-bold">essa reunião pode ser o próximo passo</span>"
                     </p>
                     <SovereignButton>
                         🔘 CLIQUE AGORA PARA AGENDAR SUA REUNIÃO

@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { SectionDivider } from './components/SectionDivider';
 
 // Lazy load components that are below the fold
+const TicketContrast = React.lazy(() => import('./components/TicketContrast').then(module => ({ default: module.TicketContrast })));
 const MarketContrast = React.lazy(() => import('./components/MarketContrast').then(module => ({ default: module.MarketContrast })));
 const ParaQuem = React.lazy(() => import('./components/ParaQuem').then(module => ({ default: module.ParaQuem })));
 const NutraCarousel = React.lazy(() => import('./components/NutraCarousel').then(module => ({ default: module.NutraCarousel })));
@@ -49,6 +50,11 @@ function App() {
   return (
     <div className="min-h-screen bg-black flex flex-col gap-0 w-full overflow-x-hidden">
       <Hero />
+      <SectionDivider />
+
+      <Suspense fallback={null}>
+        <TicketContrast />
+      </Suspense>
       <SectionDivider />
 
       <Suspense fallback={null}>

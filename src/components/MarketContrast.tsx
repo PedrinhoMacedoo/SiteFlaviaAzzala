@@ -54,7 +54,6 @@ const useTilt = (active: boolean) => {
 };
 
 interface CardMarketProps {
-    subtitle: string;
     title: string;
     items: string[];
     flag: string;
@@ -63,7 +62,7 @@ interface CardMarketProps {
     type: 'negative' | 'positive';
 }
 
-const CardMarket = ({ subtitle, title, items, flag, themeColor, icon, type }: CardMarketProps) => {
+const CardMarket = ({ title, items, flag, themeColor, type }: CardMarketProps) => {
     const { ref, style, contentStyle, handleMouseMove, handleMouseLeave } = useTilt(true);
 
     return (
@@ -164,47 +163,8 @@ const CardMarket = ({ subtitle, title, items, flag, themeColor, icon, type }: Ca
                         alignItems: 'flex-start',
                         textAlign: 'left'
                     }}>
-                    {/* Floating Badge */}
-                    <div
-                        className="market-card-badge"
-                        style={{
-                            marginTop: '-3rem',
-                            marginBottom: '1.5rem',
-                            alignSelf: 'flex-start',
-                            background: 'rgba(15,15,15,0.9)',
-                            backdropFilter: 'blur(10px)',
-                            border: `1px solid ${themeColor}30`,
-                            padding: '0.5rem 1rem',
-                            borderRadius: '0.75rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            boxShadow: '0 8px 16px -4px rgba(0,0,0,0.6)'
-                        }}>
-                        <div style={{ color: themeColor, display: 'flex', alignItems: 'center' }}>{icon}</div>
-                        <span style={{
-                            color: '#fff',
-                            fontSize: '0.7rem',
-                            fontWeight: 700,
-                            letterSpacing: '0.05em',
-                            textTransform: 'uppercase',
-                            fontFamily: 'Plus Jakarta Sans, sans-serif'
-                        }}>
-                            {subtitle}
-                        </span>
-                    </div>
-
                     {/* Title Group */}
                     <div className="market-card-header-group" style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.2rem', alignItems: 'flex-start', textAlign: 'left' }}>
-                        <span style={{
-                            fontFamily: 'var(--title-font)',
-                            fontStyle: 'italic',
-                            fontSize: '1.1rem',
-                            color: COLORS.text.secondary,
-                            opacity: 0.8
-                        }}>
-                            Análise:
-                        </span>
                         <h2 className="market-card-title" style={{
                             fontFamily: 'var(--title-font)',
                             fontSize: '2.2rem',
@@ -391,13 +351,9 @@ export const MarketContrast = () => {
 
     return (
         <section id="market-section"
-            className="market-pad"
+            className="relative w-full py-[var(--section-py-mobile)] md:py-[var(--section-py)] px-4 sm:px-8 flex flex-col items-center justify-center overflow-hidden z-20"
             style={{
                 backgroundColor: COLORS.bg,
-                paddingTop: '1.5rem',
-                paddingBottom: '1.5rem',
-                paddingLeft: '1rem',
-                paddingRight: '1rem',
                 position: 'relative',
                 overflow: 'hidden'
             }}
@@ -414,7 +370,7 @@ export const MarketContrast = () => {
             }}></div>
 
             {/* Header */}
-            <div className="market-header" style={{ textAlign: 'center', marginBottom: '5rem', position: 'relative', zIndex: 10 }}>
+            <div className="market-header" style={{ textAlign: 'center', marginBottom: '3rem', position: 'relative', zIndex: 10 }}>
                 <div style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -455,7 +411,6 @@ export const MarketContrast = () => {
             }}>
                 <CardMarket
                     type="negative"
-                    subtitle="O OCEANO VERMELHO"
                     title="NO BRASIL"
                     items={[
                         "Poder de compra limitado",
@@ -470,7 +425,6 @@ export const MarketContrast = () => {
 
                 <CardMarket
                     type="positive"
-                    subtitle="O OCEANO AZUL"
                     title="NOS ESTADOS UNIDOS"
                     items={[
                         "Maior mercado consumidor do mundo",
@@ -485,20 +439,31 @@ export const MarketContrast = () => {
             </div>
 
             {/* Footer Statement */}
-            <div style={{ position: 'relative', zIndex: 10, marginTop: '2rem', marginBottom: '2rem', textAlign: 'center' }}>
-                <p style={{
-                    color: 'rgba(255,255,255,0.7)',
-                    fontFamily: 'var(--subtitle-font)',
-                    fontSize: '1.25rem',
-                    fontWeight: 400,
-                    cursor: 'default',
-                    maxWidth: '600px',
-                    margin: '0 auto',
-                    lineHeight: 1.6
-                }}>
+            <div style={{ position: 'relative', zIndex: 10, marginTop: '2.5rem', marginBottom: '0rem', textAlign: 'center' }}>
+                <p
+                    id="market-final-text"
+                    style={{
+                        color: 'rgba(255,255,255,0.7)',
+                        fontFamily: 'var(--subtitle-font)',
+                        fontSize: '1.4rem',
+                        fontWeight: 400,
+                        cursor: 'default',
+                        maxWidth: '800px',
+                        margin: '0 auto',
+                        lineHeight: 1.4
+                    }}
+                >
                     Você não precisa trabalhar mais.<br />
                     <strong style={{ color: '#fff', fontWeight: 600 }}>Precisa operar onde existe dinheiro circulando.</strong>
                 </p>
+                <style>{`
+                    @media (max-width: 768px) {
+                        #market-final-text {
+                            font-size: 1.1rem !important;
+                            line-height: 1.3 !important;
+                        }
+                    }
+                `}</style>
             </div>
         </section>
     );

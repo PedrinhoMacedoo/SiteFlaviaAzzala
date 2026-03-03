@@ -24,7 +24,7 @@ const deliverables = [
         description: (
             <>
                 Você vai entender como funciona o modelo de operação em Nutra no mercado americano, incluindo estrutura de funil, categoria, lógica de monetização e posicionamento em dólar.<br /><br />
-                <span className="font-semibold text-white">Direcionamento aplicado ao seu perfil.<br />Sem teoria genérica.</span>
+                <span className="font-semibold" style={{ color: ACCENT }}>Direcionamento aplicado ao seu perfil.<br />Sem teoria genérica.</span>
             </>
         ),
         icon: (
@@ -67,7 +67,7 @@ export const Entregaveis: React.FC = () => {
     return (
         <section
             id="entregaveis-section"
-            className="relative w-full py-4 px-4 sm:px-8 flex justify-center overflow-hidden z-20"
+            className="relative w-full py-[var(--section-py-mobile)] md:py-[var(--section-py)] px-4 sm:px-8 flex justify-center overflow-hidden z-20"
             style={{ backgroundColor: '#000' }}
             onMouseMove={handleMouseMove}
         >
@@ -87,7 +87,7 @@ export const Entregaveis: React.FC = () => {
                 }}
             />
 
-            <div className="max-w-[1100px] w-full flex flex-col items-center gap-8 sm:gap-10 relative z-10">
+            <div className="max-w-[1100px] w-full flex flex-col items-center gap-6 sm:gap-8 relative z-10">
 
                 {/* Section Header */}
                 <div className="flex flex-col items-center gap-4 text-center scroll-top delay-200">
@@ -149,7 +149,7 @@ export const Entregaveis: React.FC = () => {
                                                 transition: 'color 0.4s ease',
                                             }}
                                         >
-                                            STP {item.number}
+                                            Passo {item.number}
                                         </span>
                                     </div>
                                 </div>

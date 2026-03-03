@@ -3,18 +3,44 @@ import React from 'react';
 interface SovereignButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     className?: string;
+    variant?: 'red' | 'blue';
 }
 
-export const SovereignButton: React.FC<SovereignButtonProps> = ({ children, className = '', ...props }) => {
+export const SovereignButton: React.FC<SovereignButtonProps> = ({ children, className = '', variant = 'red', ...props }) => {
     // Retira o emoji 🔘 que eu usava como ícone antes para substituir pelo ponto vermelho real
     const stringChildren = typeof children === 'string' ? children.replace('🔘', '').trim() : children;
 
+    const colors = {
+        red: {
+            bg: 'linear-gradient(90deg, #5a0000 0%, #e60000 50%, #5a0000 100%)',
+            shadow: 'rgba(229,9,20,0.3)',
+            hoverShadow: 'rgba(229,9,20,0.8)',
+            border: 'border-red-500/50',
+            dot: '#ff3333'
+        },
+        blue: {
+            bg: 'linear-gradient(90deg, #001a3d 0%, #0047ab 50%, #001a3d 100%)',
+            shadow: 'rgba(0,71,171,0.3)',
+            hoverShadow: 'rgba(0,71,171,0.8)',
+            border: 'border-blue-500/50',
+            dot: '#3399ff'
+        }
+    };
+
+    const current = colors[variant];
+
     return (
         <button
-            className={`group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_50px_rgba(229,9,20,0.8)] focus:outline-none text-[11px] sm:text-xs md:text-sm font-bold text-white tracking-widest sm:tracking-[0.1em] rounded-[40px] py-4 px-6 sm:py-5 sm:px-12 relative items-center justify-center border border-red-500/50 ${className}`}
+            className={`group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.03] focus:outline-none text-[11px] sm:text-xs md:text-sm font-bold text-white tracking-widest sm:tracking-[0.1em] rounded-[40px] py-4 px-6 sm:py-5 sm:px-12 relative items-center justify-center border ${current.border} ${variant === 'red' ? 'animate-pulse-gentle' : 'animate-pulse-gentle-blue'} mobile-tap-active ${className}`}
             style={{
-                background: 'linear-gradient(90deg, #5a0000 0%, #e60000 50%, #5a0000 100%)',
-                boxShadow: '0 0 30px rgba(229,9,20,0.3)',
+                background: current.bg,
+                boxShadow: `0 0 30px ${current.shadow}`,
+            }}
+            onMouseOver={(e) => {
+                e.currentTarget.style.boxShadow = `0 0 50px ${current.hoverShadow}`;
+            }}
+            onMouseOut={(e) => {
+                e.currentTarget.style.boxShadow = `0 0 30px ${current.shadow}`;
             }}
             {...props}
         >
@@ -27,11 +53,12 @@ export const SovereignButton: React.FC<SovereignButtonProps> = ({ children, clas
             />
 
             <div className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                {/* Red Glowing Circle Indicator */}
+                {/* Glowing Circle Indicator */}
                 <div
-                    className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff3333] shrink-0"
+                    className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shrink-0"
                     style={{
-                        boxShadow: '0 0 10px #ff3333, inset 0 0 4px white'
+                        backgroundColor: current.dot,
+                        boxShadow: `0 0 10px ${current.dot}, inset 0 0 4px white`
                     }}
                 />
 

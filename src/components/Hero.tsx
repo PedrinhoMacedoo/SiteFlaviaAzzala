@@ -86,11 +86,11 @@ export const Hero = () => {
                     marginTop: '3rem',
                     marginLeft: '2rem'
                 }}>
-                    {/* Logo (Oculta no mobile a pedido do usuário) */}
+                    {/* Logo Restaurada */}
                     <img
                         src={logoImg}
                         alt="Mapa do Dolar"
-                        className="hero-logo hidden md:block"
+                        className="hero-logo"
                         style={{
                             width: '260px',
                             marginBottom: '1.2rem',
@@ -119,7 +119,7 @@ export const Hero = () => {
                             color: '#F5D060', /* Dourado puro e limpo como era "no título antes" */
                             textShadow: '0 0 12px rgba(245, 208, 96, 0.4)'
                         }}>
-                            FATURE DE 50 A 100 MIL TODOS OS MESES.
+                            FATURE DE $50 A $100 MIL TODOS OS MESES.
                         </span>
                     </h1>
 
@@ -212,14 +212,14 @@ export const Hero = () => {
                         padding-left: 1rem !important;
                         padding-right: 1rem !important;
                         width: 100% !important;
-                        padding-top: 5vh !important;
+                        padding-top: 2vh !important;
                         min-height: auto !important;
-                        padding-bottom: 0rem !important;
+                        padding-bottom: var(--section-py-mobile) !important;
                     }
-
+ 
                     .hero-content {
                         transform: scale(1) !important;
-                        margin-top: 35vh !important; /* Ajustando para o botão subir e o rosto continuar visível */
+                        margin-top: 30vh !important; /* Ajustando para dar mais espaço ao rosto da cliente */
                         margin-left: 0 !important;
                         align-items: center !important;
                         text-align: center !important;

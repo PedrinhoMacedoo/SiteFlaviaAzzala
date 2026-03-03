@@ -60,6 +60,10 @@ html::before {
   --desktop-title-line-height: 1.15;
   --desktop-subtitle-size: clamp(0.9rem, 2vw, 1.1rem);
   --desktop-subtitle-line-height: 1.45;
+
+  /* Section Spacing Tokens - Low and Fixed - Unified */
+  --section-py: 2.2rem;
+  --section-py-mobile: 1.2rem;
 }
 
 /* User Scroll Animations - Smoother and lighter */
@@ -246,4 +250,68 @@ html::before {
   100% {
     background-position: 24px 24px;
   }
+}
+
+/* ═══ Sovereign Button Animations ═══ */
+@keyframes gentle-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 208, 96, 0.4);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px 5px rgba(245, 208, 96, 0.2);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 208, 96, 0.4);
+  }
+}
+
+@keyframes gentle-pulse-blue {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px 5px rgba(37, 99, 235, 0.2);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+}
+
+@keyframes mobile-tap-blur {
+  0% {
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  50% {
+    filter: blur(4px);
+    transform: scale(0.96);
+  }
+
+  100% {
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-gentle {
+  animation: gentle-pulse 3s infinite ease-in-out;
+}
+
+.animate-pulse-gentle-blue {
+  animation: gentle-pulse-blue 3s infinite ease-in-out;
+}
+
+.mobile-tap-active:active {
+  animation: mobile-tap-blur 0.4s ease-out;
 }

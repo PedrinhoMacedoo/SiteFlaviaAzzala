@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { AlertCircle } from 'lucide-react';
 import { SovereignButton } from './SovereignButton';
 
 // Assets: Videos
@@ -28,15 +29,15 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
-    { id: 1, type: 'video', src: case1Vid, name: 'Omar', role: 'Sócio Milionário' },
+    { id: 1, type: 'video', src: case1Vid, name: 'Vinicius', role: 'Sócio Milionário' },
     { id: 2, type: 'image', src: resultado1Img, name: 'Resultado', role: 'Vendas Diárias' },
-    { id: 3, type: 'video', src: case2Vid, name: 'Aluno 1', role: 'Faturou R$2M' },
+    { id: 3, type: 'video', src: case2Vid, name: 'Naldo', role: 'Faturou R$2M' },
     { id: 4, type: 'image', src: mentoria1Img, name: 'Feedback', role: 'Mentoria Elite' },
-    { id: 5, type: 'video', src: case3Vid, name: 'Aluno 2', role: 'Operador de Drop' },
+    { id: 5, type: 'video', src: case3Vid, name: 'Jhow', role: 'Operador de Drop' },
     { id: 6, type: 'image', src: resultado2Img, name: 'Resultado', role: 'Escala' },
-    { id: 7, type: 'video', src: case4Vid, name: 'Aluno 3', role: 'Mentorando' },
+    { id: 7, type: 'video', src: case4Vid, name: 'Flávia', role: 'Mentoria Mapa do Dólar' },
     { id: 8, type: 'image', src: resultado3Img, name: 'Resultado', role: 'Mapa do Dólar' },
-    { id: 9, type: 'video', src: case5Vid, name: 'Aluno 4', role: 'Resultados Reais' },
+    { id: 9, type: 'video', src: case5Vid, name: 'Resultado', role: 'Resultados Reais' },
     { id: 10, type: 'image', src: mentoria2Img, name: 'Feedback', role: 'Estratégia' },
     { id: 11, type: 'image', src: resultado4Img, name: 'Resultado', role: 'Consistência' },
     { id: 12, type: 'image', src: mentoria3Img, name: 'Feedback', role: 'Acompanhamento' },
@@ -255,17 +256,17 @@ export const ProvasSociais: React.FC = () => {
     const col2 = testimonials.filter((_, i) => i % 2 !== 0);
 
     return (
-        <section id="provas-sociais" className="relative w-full bg-black overflow-hidden z-20">
+        <section id="provas-sociais" className="relative w-full bg-black pt-8 pb-4 sm:py-16 overflow-hidden z-20">
 
             {/* ═══ PART 1: Highlight Cases ═══ */}
-            <div className="relative py-4">
+            <div className="relative">
                 {/* BG glow */}
                 <div className="absolute top-1/3 left-1/2 w-[500px] h-[500px] rounded-full blur-[200px] -translate-y-1/2 -translate-x-1/2 pointer-events-none opacity-[0.04]" style={{ backgroundColor: ACCENT }} />
 
                 <div className="max-w-3xl mx-auto px-4 sm:px-8 relative z-10 flex flex-col items-center">
 
                     {/* Title */}
-                    <div className="flex flex-col gap-2 items-center text-center mb-14">
+                    <div className="flex flex-col gap-2 items-center text-center mb-8">
                         <h2 className="text-[length:var(--mobile-title-size)] sm:text-[length:var(--desktop-title-size)] font-bold text-white leading-tight uppercase" style={{ fontFamily: 'var(--title-font)' }}>
                             VEJA O QUE ACONTECE<br />
                             QUANDO A <span style={{ color: ACCENT }}>ESTRUTURA<br />CERTA</span> É APLICADA
@@ -273,7 +274,7 @@ export const ProvasSociais: React.FC = () => {
                     </div>
 
                     {/* Stacked Highlight Videos */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 w-full max-w-[850px] items-start mb-14">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 w-full max-w-[850px] items-start mb-8">
                         {/* Case 1 */}
                         <div className="flex flex-col items-center w-full">
                             <div className="bg-[#0c0c0c] border border-white/[0.06] rounded-xl px-5 py-3 mb-[-12px] text-center z-10 relative"
@@ -347,13 +348,13 @@ export const ProvasSociais: React.FC = () => {
                         }
                         .provas-text-sm {
                             font-family: var(--subtitle-font) !important;
-                            font-size: clamp(1rem, 2.5vw, 1.35rem) !important;
-                            line-height: 1.4 !important;
+                            font-size: clamp(1.5rem, 5vw, 2rem) !important;
+                            line-height: 1.2 !important;
                             text-align: center !important;
                             text-decoration-line: underline !important;
                             text-decoration-color: rgba(255,255,255,0.2) !important;
                             text-underline-offset: 4px !important;
-                            font-weight: 300 !important;
+                            font-weight: 700 !important;
                         }
                         .provas-text-lg {
                             font-family: var(--subtitle-font) !important;
@@ -369,13 +370,13 @@ export const ProvasSociais: React.FC = () => {
                             E esses não são casos isolados.
                         </p>
 
-                        <p className="text-white/90 provas-text-lg">
+                        <p className="text-white/90 text-lg sm:text-xl md:text-2xl mt-4">
                             Hoje existem mais de <span className="font-bold text-white">200 depoimentos</span><br />
                             reais de operadores que aplicaram o<br />
                             mesmo modelo apresentado na <span className="font-bold" style={{ color: ACCENT }}>Estratégia<br />Mapa do Dólar.</span>
                         </p>
 
-                        <div className="flex flex-col gap-0 items-center mt-6 w-full">
+                        <div className="flex flex-col gap-0 items-center mt-4 w-full">
                             <p className="text-white font-black uppercase tracking-tighter provas-impact-white">
                                 RESULTADO NÃO É PROMESSA.
                             </p>
@@ -410,10 +411,17 @@ export const ProvasSociais: React.FC = () => {
             </div>
 
             {/* CTA */}
-            <div className="relative z-10 flex justify-center py-10 sm:py-14">
-                <SovereignButton onClick={() => window.open('https://api.whatsapp.com/send?phone=55...', '_blank')}>
+            <div className="relative z-10 flex flex-col items-center pt-8 sm:pt-10 gap-4">
+                <SovereignButton variant="red" onClick={() => window.open('https://api.whatsapp.com/send?phone=55...', '_blank')}>
                     🔘 CLIQUE AGORA PARA AGENDAR SUA REUNIÃO
                 </SovereignButton>
+
+                <div className="flex items-center justify-center gap-1.5 opacity-80 animate-pulse">
+                    <AlertCircle size={12} className="text-[#F5D060] shrink-0" />
+                    <span className="text-white/70 text-[10px] sm:text-[11px] uppercase tracking-wider font-medium leading-none">
+                        Restam apenas 4 vagas esta semana
+                    </span>
+                </div>
             </div>
 
             {/* ═══ Instagram Popup ═══ */}

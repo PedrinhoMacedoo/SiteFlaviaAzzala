@@ -10,11 +10,40 @@ const items = [
 
 export const InfoTicker: React.FC = () => {
     return (
-        <section className="w-full bg-black py-16 overflow-hidden relative z-20">
-            <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-                <h2 className="text-xl sm:text-2xl font-bold text-white/90 tracking-[0.2em] uppercase leading-relaxed" style={{ fontFamily: 'var(--title-font)' }}>
-                    DIFERENTE DE INFOPRODUTO... AQUI <br className="sm:hidden" /> <span style={{ color: ACCENT }}>VOCÊ TEM:</span>
+        <section className="w-full bg-black py-8 sm:py-16 overflow-hidden relative z-20">
+            <div className="max-w-7xl mx-auto px-6 mb-2 sm:mb-12 text-center">
+                <h2
+                    id="force-title-info"
+                    className="text-3xl sm:text-2xl font-black sm:font-bold text-white/90 tracking-[0.2em] uppercase leading-tight sm:leading-relaxed"
+                    style={{ fontFamily: 'var(--title-font)', fontSize: '60px' }}
+                >
+                    <span className="line1">DIFERENTE DE INFOPRODUTO…</span>
+                    <span className="line2" style={{ color: ACCENT }}>AQUI VOCÊ TEM:</span>
                 </h2>
+                <style>{`
+                    @media (max-width: 768px) {
+                        #force-title-info {
+                            font-size: clamp(1rem, 5.5vw, 2.5rem) !important;
+                            color: white !important;
+                            line-height: 1.2 !important;
+                            display: flex !important;
+                            flex-direction: column !important;
+                            align-items: center !important;
+                            text-align: center !important;
+                            width: 100% !important;
+                            letter-spacing: 0.02em !important;
+                            padding: 0 15px !important;
+                        }
+                        #force-title-info .line1 {
+                            display: block !important;
+                            white-space: nowrap !important;
+                        }
+                        #force-title-info .line2 {
+                            display: block !important;
+                            white-space: nowrap !important;
+                        }
+                    }
+                `}</style>
             </div>
 
             <div className="relative flex overflow-x-hidden">

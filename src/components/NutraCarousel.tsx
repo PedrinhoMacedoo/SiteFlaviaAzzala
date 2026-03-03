@@ -49,7 +49,7 @@ export const NutraCarousel: React.FC = () => {
     return (
         <section
             id="nutra-section"
-            className="relative w-full py-4 px-4 sm:px-8 flex flex-col items-center justify-center overflow-hidden z-20"
+            className="relative w-full py-[var(--section-py-mobile)] md:py-[var(--section-py)] px-4 sm:px-8 flex flex-col items-center justify-center overflow-hidden z-20"
             style={{ backgroundColor: '#000' }}
         >
             {/* Mesh Gradients for background depth */}
@@ -63,9 +63,9 @@ export const NutraCarousel: React.FC = () => {
             />
 
             {/* HEADER */}
-            <div className="flex flex-col items-center gap-6 text-center mb-8 sm:mb-10 relative z-10">
-                <div className="inline-flex items-center px-4 py-2 rounded-full border border-white/5 bg-white/5 backdrop-blur-md shadow-2xl">
-                    <span className="text-white/80 text-[10px] sm:text-[0.8rem] font-bold tracking-[0.1em] uppercase" style={{ fontFamily: 'var(--subtitle-font)' }}>
+            <div className="flex flex-col items-center gap-6 text-center mb-6 sm:mb-8 relative z-10">
+                <div className="inline-flex items-center px-6 py-2.5 rounded-full border border-[#F5D060]/30 bg-[#F5D060]/10 backdrop-blur-md shadow-[0_0_20px_rgba(245,208,96,0.15)] mb-2">
+                    <span className="text-[#F5D060] text-[11px] sm:text-[0.8rem] font-black tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--subtitle-font)' }}>
                         — POR QUE NUTRA É A CATEGORIA IDEAL NOS EUA
                     </span>
                 </div>
@@ -111,55 +111,73 @@ export const NutraCarousel: React.FC = () => {
                 </div>
             </div>
 
-            {/* GRID LAYOUT - Replaces Carousel */}
+            {/* GRID LAYOUT - Redesigned for Premium Look */}
             <div className="relative w-full max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 z-10 px-4 sm:px-6">
                 {steps.map((step, i) => (
                     <div
                         key={i}
-                        className="relative group p-8 sm:p-10 rounded-[2rem] overflow-hidden transition-all duration-500 hover:scale-[1.01]"
+                        className="relative group p-8 sm:p-10 rounded-[2.5rem] overflow-hidden transition-all duration-700 hover:scale-[1.02] hover:-translate-y-2"
                         style={{
-                            backgroundColor: 'rgba(10, 10, 10, 0.6)',
-                            backdropFilter: 'blur(20px)',
-                            border: '1px solid rgba(255,255,255,0.06)',
-                            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                            backgroundColor: 'rgba(15, 15, 15, 0.4)',
+                            backdropFilter: 'blur(30px)',
+                            WebkitBackdropFilter: 'blur(30px)',
+                            border: '1px solid rgba(255,255,255,0.08)',
+                            boxShadow: '0 20px 50px rgba(0,0,0,0.4)',
                         }}
                     >
-                        {/* Hover Border Shine */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                        {/* Interactive Glow Effect */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"
                             style={{
-                                background: `linear-gradient(135deg, ${ACCENT}15 0%, transparent 40%, transparent 60%, ${ACCENT}15 100%)`,
-                                border: `1px solid ${ACCENT}30`,
-                                borderRadius: 'inherit'
+                                background: `radial-gradient(circle at 50% 0%, ${ACCENT}10 0%, transparent 70%)`,
                             }}
                         />
 
-                        <div className="relative z-10 flex flex-col items-start gap-6 h-full">
-                            {/* Icon with glow */}
+                        {/* Border Lighting Shine */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                            style={{
+                                border: `1px solid ${ACCENT}40`,
+                                borderRadius: 'inherit',
+                                maskImage: 'linear-gradient(135deg, black, transparent 50%, black)',
+                                WebkitMaskImage: 'linear-gradient(135deg, black, transparent 50%, black)',
+                            }}
+                        />
+
+                        <div className="relative z-10 flex flex-col items-start gap-8 h-full">
+                            {/* Icon Container - Premium Style */}
                             <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-3xl flex items-center justify-center flex-shrink-0"
                                 style={{
-                                    backgroundColor: 'rgba(255,255,255,0.02)',
-                                    border: '1px solid rgba(255,255,255,0.05)'
+                                    backgroundColor: 'rgba(255,255,255,0.03)',
+                                    border: '1px solid rgba(255,255,255,0.08)',
+                                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.02)'
                                 }}>
-                                <div className="absolute inset-0 rounded-3xl opacity-10 blur-xl group-hover:opacity-20 transition-opacity" style={{ backgroundColor: ACCENT }} />
-                                {React.cloneElement(step.icon as React.ReactElement<any>, {
-                                    width: 32,
-                                    height: 32,
-                                    strokeWidth: 1.5
-                                })}
+                                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-700" style={{ backgroundColor: ACCENT }} />
+                                <div className="transform group-hover:scale-110 transition-transform duration-500">
+                                    {React.cloneElement(step.icon as React.ReactElement<any>, {
+                                        width: 32,
+                                        height: 32,
+                                        strokeWidth: 1.5,
+                                        stroke: ACCENT
+                                    })}
+                                </div>
                             </div>
 
-                            <div className="flex flex-col gap-3 flex-1 overflow-hidden relative">
-
-                                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight break-words" style={{ fontFamily: 'var(--title-font)' }}>
+                            <div className="flex flex-col gap-4 flex-1 relative">
+                                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight" style={{ fontFamily: 'var(--title-font)' }}>
                                     {step.title}
                                 </h3>
-                                <p className="text-[#a0a8b8] text-sm sm:text-base font-light leading-relaxed max-w-full" style={{ fontFamily: 'var(--subtitle-font)' }}>
+                                <p className="text-[#a0a8b8] text-sm sm:text-base font-medium leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-500" style={{ fontFamily: 'var(--subtitle-font)' }}>
                                     {step.text}
                                 </p>
                             </div>
 
-                            {/* Ghost Number (ajustado para ficar discreto no grid) */}
-                            <span className="absolute top-4 right-6 text-6xl sm:text-8xl font-black opacity-10 pointer-events-none select-none tracking-tighter" style={{ fontFamily: 'var(--title-font)', color: ACCENT }}>
+                            {/* Visible and Smaller Number */}
+                            <span
+                                className="absolute top-4 right-6 text-4xl sm:text-5xl font-black pointer-events-none select-none tracking-tighter opacity-20 transition-all duration-700 group-hover:opacity-40"
+                                style={{
+                                    fontFamily: 'var(--title-font)',
+                                    color: ACCENT
+                                }}
+                            >
                                 {step.number}
                             </span>
                         </div>
@@ -168,10 +186,39 @@ export const NutraCarousel: React.FC = () => {
             </div>
 
             {/* Final Statement Tags - Refined */}
-            <div className="flex flex-col items-center gap-8 text-center mt-20 sm:mt-28 relative z-10 w-full max-w-4xl px-4">
-                <p className="text-white/60 text-sm sm:text-base font-medium tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--subtitle-font)' }}>
-                    Diferente de infoproduto… Aqui você tem:
+            <div className="flex flex-col items-center gap-2 text-center mt-6 sm:mt-16 relative z-10 w-full max-w-4xl px-4">
+                <p
+                    id="force-title-nutra"
+                    className="text-white font-black tracking-tight uppercase px-4 flex flex-col items-center"
+                    style={{ fontFamily: 'var(--title-font)', fontSize: '60px', lineHeight: '1.1' }}
+                >
+                    <span className="line1 block whitespace-nowrap">DIFERENTE DE INFOPRODUTO…</span>
+                    <span className="line2 block whitespace-nowrap" style={{ color: ACCENT }}>AQUI VOCÊ TEM:</span>
                 </p>
+                <style>{`
+                    @media (max-width: 768px) {
+                        #force-title-nutra {
+                            font-size: clamp(1rem, 5.5vw, 2.5rem) !important;
+                            color: white !important;
+                            line-height: 1.2 !important;
+                            display: flex !important;
+                            flex-direction: column !important;
+                            align-items: center !important;
+                            text-align: center !important;
+                            width: 100% !important;
+                            letter-spacing: 0.02em !important;
+                            padding: 0 15px !important;
+                        }
+                        #force-title-nutra .line1 {
+                            display: block !important;
+                            white-space: nowrap !important;
+                        }
+                        #force-title-nutra .line2 {
+                            display: block !important;
+                            white-space: nowrap !important;
+                        }
+                    }
+                `}</style>
 
                 <div className="relative flex overflow-x-hidden w-full max-w-[100vw] mt-4 w-screen -ml-4 sm:ml-0 sm:w-full" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
                     <div className="flex animate-ticker whitespace-nowrap gap-4 sm:gap-6">
