@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "npm"
 
       - name: Install dependencies
@@ -30,11 +30,11 @@ jobs:
           cat > dist/.htaccess << 'EOF'
           <IfModule mod_rewrite.c>
             RewriteEngine On
-            RewriteBase /
+            RewriteBase /mapadodolar/
             RewriteRule ^index\.html$ - [L]
             RewriteCond %{REQUEST_FILENAME} !-f
             RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule . /index.html [L]
+            RewriteRule . /mapadodolar/index.html [L]
           </IfModule>
           EOF
 
@@ -46,7 +46,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: dist/
-          server-dir: /
+          server-dir: public_html/mapadodolar/
           dangerous-clean-slate: false
           dry-run: false
           log-level: verbose
